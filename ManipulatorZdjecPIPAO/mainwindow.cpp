@@ -32,6 +32,8 @@ void MainWindow::on_BtnWybierzZdjecie_clicked()
 
         if (!image.isNull()) {
           ui->GrViewZdjecieWe->setPixmap(image.scaled(300, 300, Qt::KeepAspectRatio));
+          ui->LblSciezkaZdjeciaWe->setText(imagePath);
+
         } else {
           ui->GrViewZdjecieWe->setText("Nie można wczytać obrazu!");
         }
