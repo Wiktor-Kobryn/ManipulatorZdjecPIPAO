@@ -104,7 +104,7 @@ public:
         if(G!=nullptr)  zwolnij_tablice(G, wys);
     }
 };
-/*
+
 class zdjecieHSL : public zdjecie
 {
 private:
@@ -128,11 +128,14 @@ public:
                  L[x][y] = (std::byte) kolor.lightness();
             }
     }
+    zdjecieHSL(zdjecieRGB img){
+
+    }
 
     ~zdjecieHSL(){
         if(H!=nullptr)  zwolnij_tablice(H, wys);
         if(S!=nullptr)  zwolnij_tablice(S, wys);
         if(L!=nullptr)  zwolnij_tablice(L, wys);
     }
-}; */
+};
 #endif
