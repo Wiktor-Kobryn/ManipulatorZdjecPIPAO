@@ -31,11 +31,11 @@ void MainWindow::on_BtnWybierzZdjecie_clicked()
         this->mainApp->zdjecieObecne= ptr;
 
         if (!image.isNull()) {
-          ui->GrViewZdjecieWe->setPixmap(image.scaled(300, 300, Qt::KeepAspectRatio));
-          ui->LblSciezkaZdjeciaWe->setText(imagePath);
+          ui->LblObrazWe->setPixmap(image.scaled(ui->LblObrazWe->width(), ui->LblObrazWe->height(), Qt::KeepAspectRatio));
+          ui->LblSciezkaWe->setText(imagePath);
 
         } else {
-          ui->GrViewZdjecieWe->setText("Nie można wczytać obrazu!");
+          ui->LblObrazWe->setText("Nie można wczytać obrazu!");
         }
     }
       emit WybierzZdjecie();
@@ -46,7 +46,7 @@ void MainWindow::on_BtnOdbicieOsiX_clicked()
 {
     emit MirrorX();
     if(this->mainApp->zdjecieObecne!=nullptr)
-        ui->GrViewZdjecieWy->setPixmap(this->mainApp->zdjecieObecne->topixmap().scaled(300,300, Qt::KeepAspectRatio));
+        ui->LblObrazWe_2->setPixmap(this->mainApp->zdjecieObecne->topixmap().scaled(ui->LblObrazWe_2->width(),ui->LblObrazWe_2->height(), Qt::KeepAspectRatio));
 
 }
 
@@ -55,7 +55,7 @@ void MainWindow::on_BtnOdbicieOsiY_clicked()
 {
     emit MirrorY();
     if(this->mainApp->zdjecieObecne!=nullptr)
-        ui->GrViewZdjecieWy->setPixmap(this->mainApp->zdjecieObecne->topixmap().scaled(300,300, Qt::KeepAspectRatio));
+        ui->LblObrazWe_2->setPixmap(this->mainApp->zdjecieObecne->topixmap().scaled(ui->LblObrazWe_2->width(),ui->LblObrazWe_2->height(), Qt::KeepAspectRatio));
 
 }
 
