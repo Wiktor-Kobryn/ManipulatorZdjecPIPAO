@@ -23,9 +23,15 @@ public:
 
 signals:
     void WybierzZdjecie();
+    void MirrorX();
+    void MirrorY();
 
 private slots:
     void on_BtnWybierzZdjecie_clicked();
+
+    void on_BtnOdbicieOsiX_clicked();
+
+    void on_BtnOdbicieOsiY_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

@@ -103,7 +103,6 @@ public:
         if(B!=nullptr)  zwolnij_tablice(B, wys);
         if(G!=nullptr)  zwolnij_tablice(G, wys);
     }
-    friend class zdjecieRGB;
 };
 /*
 class zdjecieHSL : public zdjecie

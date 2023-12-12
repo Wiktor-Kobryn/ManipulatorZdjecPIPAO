@@ -12,6 +12,7 @@ zdjecie* zdjecie::obroc_horyzontalnie() {
 
 zdjecie* zdjecie::obroc_wertykalnie() {
     // implementacja funkcji
+    std::cerr<<"jestem zdjecie_wert";
     return this;
 }
 
@@ -49,15 +50,17 @@ QPixmap zdjecieRGB::topixmap()  {
     return QPixmap::fromImage(image);
 }
 zdjecie* zdjecieRGB::obroc_horyzontalnie() {
+    std::cerr<<"jestem w hor";
     zdjecieRGB* obrocone = new zdjecieRGB(*this);
     for(int start = 0; start < szer/2; start++) {
-        obrocone->zamien_wiersze(start, szer - start, obrocone);
+        obrocone->zamien_kolumny(start, szer - start, obrocone);
     }
     return obrocone;
 }
 
 // Implementacja funkcji obroc_wertykalnie() dla klasy zdjecieRGB
 zdjecie* zdjecieRGB::obroc_wertykalnie() {
+    std::cerr<<"jestem w wer";
     zdjecieRGB* obrocone = new zdjecieRGB(*this);
     for(int start = 0; start < wys/2; start++) {
         obrocone->zamien_wiersze(start, wys - start, obrocone);
