@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <qdebug.h>
+#include "manipulatorzdjec.h"
 
 class MainWindow;
 

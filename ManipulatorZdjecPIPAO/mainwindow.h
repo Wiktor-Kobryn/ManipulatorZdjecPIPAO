@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <qdebug.h>
+#include <manipulatorzdjec.h>
 
 class Program;
 
