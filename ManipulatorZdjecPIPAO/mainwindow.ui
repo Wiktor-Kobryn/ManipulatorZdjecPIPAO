@@ -6,25 +6,154 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="HubModyfikacji">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>10</y>
+      <width>391</width>
+      <height>751</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Zdjęcie</string>
+     </attribute>
+     <widget class="QPushButton" name="BtnWybierzZdjecie">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>121</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>wybierz zdjęcie &gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnZapiszZdjecie">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>390</y>
+        <width>161</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>zapisz zdjęcie wyjściowe &gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="LblSciezkaZdjeciaWe">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>321</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;ścieżka&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="zdjecie">
+     <attribute name="title">
+      <string>Transformacje</string>
+     </attribute>
+     <widget class="QPushButton" name="BtnOdbicieOsiX">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>121</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>mirror X</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BtnOdbicieOsiY">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>121</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>mirror Y</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="transformacje">
+     <attribute name="title">
+      <string>Operacje Graficzne</string>
+     </attribute>
+    </widget>
+   </widget>
+   <widget class="QGraphicsView" name="GrViewZdjecieWe">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>30</y>
+      <width>521</width>
+      <height>321</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="GrViewZdjecieWy">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>370</y>
+      <width>521</width>
+      <height>321</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LblZdjecieWe">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>100</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>zdjęcie wejściowe</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LblZdjecieWy">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>390</y>
+      <width>121</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>zdjęcie po zmianach</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
