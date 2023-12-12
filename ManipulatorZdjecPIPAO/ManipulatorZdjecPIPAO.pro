@@ -10,10 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    manipulatorzdjec.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    manipulatorzdjec.h
 
 FORMS += \
     mainwindow.ui
