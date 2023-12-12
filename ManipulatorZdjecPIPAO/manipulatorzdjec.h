@@ -2,7 +2,7 @@
 #define MANIPULATORZDJEC_H
 #include <iostream>
 #include <qimage.h>
-
+#include <QPixmap>
 std::byte** alokuj_tablice(size_t numRows, size_t numCols) {
     std::byte** tablica = new std::byte* [numRows];
     for (int i = 0; i < numRows; i++) tablica[i] = new std::byte[numCols] ;
@@ -85,10 +85,11 @@ public:
     }
 
 
-    //Konstruktory
+    //Konstrukto ry
     //Argumentowy
-    zdjecieRGB(QImage img)
+    zdjecieRGB(QPixmap pxm)
     {
+        QImage img = pxm.toImage();
         szer = img.width();
         wys = img.height();
         R = alokuj_tablice(szer,wys);
@@ -127,7 +128,7 @@ public:
     }
     friend class zdjecieRGB;
 };
-
+/*
 class zdjecieHSL : public zdjecie
 {
 private:
@@ -157,5 +158,5 @@ public:
         if(S!=nullptr)  zwolnij_tablice(S, wys);
         if(L!=nullptr)  zwolnij_tablice(L, wys);
     }
-};
+}; */
 #endif

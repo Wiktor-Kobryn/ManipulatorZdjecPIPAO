@@ -107,26 +107,6 @@
      </attribute>
     </widget>
    </widget>
-   <widget class="QGraphicsView" name="GrViewZdjecieWe">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>30</y>
-      <width>521</width>
-      <height>321</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="GrViewZdjecieWy">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>370</y>
-      <width>521</width>
-      <height>321</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="LblZdjecieWe">
     <property name="geometry">
      <rect>
@@ -151,6 +131,32 @@
     </property>
     <property name="text">
      <string>zdjęcie po zmianach</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="GrViewZdjecieWe">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>301</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="GrViewZdjecieWy">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>380</y>
+      <width>501</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
