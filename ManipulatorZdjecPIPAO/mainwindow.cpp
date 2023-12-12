@@ -24,7 +24,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_BtnWybierzZdjecie_clicked()
 {
 
-    QString imagePath = QFileDialog::getOpenFileName(this, "Wybierz obraz", "", "Obrazy (*.png *.jpg *.jpeg *.bmp)");
+    QString imagePath = QFileDialog::getOpenFileName(this, "Wybierz obraz", "", "Obrazy (*.png)");
     if (!imagePath.isEmpty()) {
         QPixmap image(imagePath);
         zdjecieRGB* ptr =  new zdjecieRGB(image);
