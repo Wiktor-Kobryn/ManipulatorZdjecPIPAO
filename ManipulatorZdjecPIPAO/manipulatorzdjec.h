@@ -1,9 +1,11 @@
+#pragma once
 #ifndef MANIPULATORZDJEC_H
 #define MANIPULATORZDJEC_H
 #include <iostream>
 #include <qimage.h>
 #include <QPixmap>
-
+#include <qmessagebox.h>
+#include <QColor>
 std::byte** alokuj_tablice(size_t numRows, size_t numCols);
 int** alokuj_tablice_int(size_t numRows, size_t numCols);
 void zwolnij_tablice( std::byte** tab, int wiersze);
@@ -17,8 +19,9 @@ protected:
     int wys;
 
 public:
-    virtual zdjecie obroc_horyzontalnie();
-    virtual zdjecie obroc_wertykalnie();
+    virtual QPixmap topixmap();
+    virtual zdjecie* obroc_horyzontalnie();
+    virtual zdjecie* obroc_wertykalnie();
 };
 class zdjecieRGB : public zdjecie
 {
@@ -53,41 +56,30 @@ private:
     }
 public:
 
-    zdjecie obroc_horyzontalnie() override{
-     zdjecieRGB obrocone = *(this);
-     for(int start=0;start<szer/2 ;start++){
-         zamien_wiersze(start,szer-start, &obrocone);
-     }
+    zdjecie* obroc_horyzontalnie() override;
+    zdjecie* obroc_wertykalnie() override;
+    QPixmap topixmap() override;
 
-     return obrocone;
-    }
-    zdjecie obroc_wertykalnie() override{
-          zdjecieRGB obrocone = *(this);
-          for(int start=0;start<wys/2 ;start++){
-              zamien_wiersze(start,wys-start, &obrocone);
-          }
-          return obrocone;
-    }
-
-
-    //Konstrukto ry
+    //Konstruktory
     //Argumentowy
-    zdjecieRGB(QPixmap pxm)
-    {
-        QImage img = pxm.toImage();
-        szer = img.width();
-        wys = img.height();
-        R = alokuj_tablice(szer,wys);
-        G = alokuj_tablice(szer,wys);
-        B = alokuj_tablice(szer,wys);
+    zdjecieRGB(QPixmap pxm);
 
-        for(int x = 0; x!= szer; x++)
-            for (int y=0;y!= wys; y++ ) {
-                 QColor kolor = img.pixel(x,y) ;
-                 R[x][y] = (std::byte) kolor.red();
-                 G[x][y] = (std::byte) kolor.green();
-                 B[x][y] = (std::byte) kolor.blue();
-            }
+   //Przenoszący
+    zdjecieRGB(zdjecieRGB&& other) noexcept
+        : R(nullptr), G(nullptr), B(nullptr) {
+        // Przenoszenie zasobów z 'other' do bieżącego obiektu
+        R = other.R;
+        G = other.G;
+        B = other.B;
+        szer = other.szer;
+        wys = other.wys;
+
+        // Resetowanie zasobów w 'other'
+        other.R = nullptr;
+        other.G = nullptr;
+        other.B = nullptr;
+        other.szer = 0;
+        other.wys = 0;
     }
     // kopiujacy
     zdjecieRGB(const zdjecieRGB& kopia){

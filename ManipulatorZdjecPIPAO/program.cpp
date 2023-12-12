@@ -3,5 +3,5 @@
 
 void Program::on_WybierzZdjecie()
 {
-    qInfo() << "działa slot";
+
 }

@@ -1,10 +1,12 @@
+#pragma once
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
 #include <QObject>
 #include <qdebug.h>
 #include "manipulatorzdjec.h"
-
+#include "QDialog"
+#include "QFileDialog"
 class MainWindow;
 
 class Program : public QObject

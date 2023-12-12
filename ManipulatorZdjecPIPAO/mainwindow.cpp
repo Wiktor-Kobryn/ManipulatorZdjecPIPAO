@@ -20,6 +20,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_BtnWybierzZdjecie_clicked()
 {
-    emit WybierzZdjecie();
+
+    QString imagePath = QFileDialog::getOpenFileName(this, "Wybierz obraz", "", "Obrazy (*.png *.jpg *.jpeg *.bmp)");
+    if (!imagePath.isEmpty()) {
+        QPixmap image(imagePath);
+        zdjecieRGB imgRGB(image);
+        if (!image.isNull()) {
+          ui->GrViewZdjecieWe->setPixmap(image.scaled(300, 300, Qt::KeepAspectRatio));
+        } else {
+          ui->GrViewZdjecieWe->setText("Nie można wczytać obrazu!");
+        }
+        ui->GrViewZdjecieWy->setPixmap(imgRGB.obroc_wertykalnie()->topixmap().scaled(300, 300, Qt::KeepAspectRatio));
+    }
+      emit WybierzZdjecie();
 }
 

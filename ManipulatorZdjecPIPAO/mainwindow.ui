@@ -17,7 +17,7 @@
    <widget class="QTabWidget" name="HubModyfikacji">
     <property name="geometry">
      <rect>
-      <x>790</x>
+      <x>720</x>
       <y>10</y>
       <width>391</width>
       <height>751</height>
@@ -107,26 +107,6 @@
      </attribute>
     </widget>
    </widget>
-   <widget class="QGraphicsView" name="GrViewZdjecieWe">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>30</y>
-      <width>521</width>
-      <height>321</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="GrViewZdjecieWy">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>370</y>
-      <width>521</width>
-      <height>321</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="LblZdjecieWe">
     <property name="geometry">
      <rect>
@@ -151,6 +131,32 @@
     </property>
     <property name="text">
      <string>zdjęcie po zmianach</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="GrViewZdjecieWe">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>30</y>
+      <width>501</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="GrViewZdjecieWy">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>430</y>
+      <width>391</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
