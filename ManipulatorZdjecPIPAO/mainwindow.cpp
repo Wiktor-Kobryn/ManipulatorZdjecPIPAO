@@ -10,11 +10,13 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     app->setGUI(this);
     ui->setupUi(this);
 
-    connect(this, SIGNAL(WybierzZdjecie()), app, SLOT(on_WybierzZdjecie()));
-    connect(this, SIGNAL(MirrorX()), app, SLOT(on_MirrorX()));
-    connect(this, SIGNAL(MirrorY()), app, SLOT(on_MirrorY()));
-    connect(this, SIGNAL(Test()), app, SLOT(on_Test()));
-
+    connect(this, SIGNAL(wybierzZdjecie()), app, SLOT(on_wybierzZdjecie()));
+    connect(this, SIGNAL(mirrorX()), app, SLOT(on_mirrorX()));
+    connect(this, SIGNAL(mirrorY()), app, SLOT(on_mirrorY()));
+    connect(this, SIGNAL(test()), app, SLOT(on_test()));
+    connect(this, SIGNAL(zmianaWartR(int)), app, SLOT(on_zmianaWartR(int)));
+    connect(this, SIGNAL(zmianaWartG(int)), app, SLOT(on_zmianaWartG(int)));
+    connect(this, SIGNAL(zmianaWartB(int)), app, SLOT(on_zmianaWartB(int)));
 }
 
 MainWindow::~MainWindow()
@@ -40,34 +42,44 @@ void MainWindow::on_BtnWybierzZdjecie_clicked()
           ui->LblObrazWe->setText("Nie można wczytać obrazu!");
         }
     }
-      emit WybierzZdjecie();
-}
+      emit wybierzZdjecie();
 
+    odswiezZdjecie();
+}
 
 void MainWindow::on_BtnOdbicieOsiX_clicked()
 {
-    emit MirrorX();
-    if(this->mainApp->zdjecieObecne!=nullptr)
-        ui->LblObrazPodglad->setPixmap(this->mainApp->zdjecieObecne->toPixmap().scaled(ui->LblObrazPodglad->width(),ui->LblObrazPodglad->height(), Qt::KeepAspectRatio));
-
+    emit mirrorX();
+    odswiezZdjecie();
 }
-
 
 void MainWindow::on_BtnOdbicieOsiY_clicked()
 {
-    emit MirrorY();
-    if(this->mainApp->zdjecieObecne!=nullptr)
-        ui->LblObrazPodglad->setPixmap(this->mainApp->zdjecieObecne->toPixmap().scaled(ui->LblObrazPodglad->width(),ui->LblObrazPodglad->height(), Qt::KeepAspectRatio));
-
+    emit mirrorY();
+    odswiezZdjecie();
 }
-
 
 void MainWindow::on_BtnTest_clicked()
 {
-    emit Test();
-    //nie wiem czemu to się powtarza i jak działa ale trzeba to wydzielić na boga!
+    emit test();
+    odswiezZdjecie();
+}
+
+void MainWindow::odswiezZdjecie()
+{
     if(this->mainApp->zdjecieObecne!=nullptr)
         ui->LblObrazPodglad->setPixmap(this->mainApp->zdjecieObecne->toPixmap().scaled(ui->LblObrazPodglad->width(),ui->LblObrazPodglad->height(), Qt::KeepAspectRatio));
+}
 
+void MainWindow::on_SliderR_valueChanged(int value)
+{
+    ui->CbxR->setValue(value);
+    emit zmianaWartR(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_CbxR_valueChanged(int arg1)
+{
+    ui->SliderR->setValue(arg1);
 }
 

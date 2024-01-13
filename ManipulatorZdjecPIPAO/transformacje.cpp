@@ -15,6 +15,10 @@ void TransfPixRGB::setTransformacje(int transfR, int transfG, int transfB)
     m_transfR = transfR;
 }
 
+TransfPixRGB::TransfPixRGB(ObrazRGB* obraz)
+    :TransfPix(obraz)
+{}
+
 void TransfPixRGB::zapiszZmianeObrazu()
 {
     if(m_transfR != 0)
@@ -27,6 +31,16 @@ void TransfPixRGB::zapiszZmianeObrazu()
     zerujTransformacje();
 }
 
+void TransfPixRGB::wpiszWartKanalu(std::byte* wartosc, int przesuniecie)
+{
+    int nowaWartosc = static_cast<int>(*wartosc) + przesuniecie;
+
+    if(nowaWartosc > 255)
+        nowaWartosc = 255;
+
+    *wartosc = static_cast<std::byte>(nowaWartosc);
+}
+
 void TransfPixRGB::zapiszTransfKanaluR()
 {
     std::byte** kanalR = m_obraz->getKanalR();
@@ -35,14 +49,7 @@ void TransfPixRGB::zapiszTransfKanaluR()
     {
         for(int j = 0; j < m_obraz->getWysokosc(); j++)
         {
-            kanalR[i][j] = static_cast<std::byte>(static_cast<int>(kanalR[i][j]) + m_transfR);
-
-            //nie jest potrzebne ze względu na to że mamy byte ale
-            //jak to ucinanie wartości przy cast dokładnie działa to nie wiem xd
-            /*
-            if(kanalR[i][j] > static_cast<std::byte>(255))
-                kanalR[i][j] = static_cast<std::byte>(static_cast<int>(kanalR[i][j]) - 255);
-            */
+            wpiszWartKanalu(&kanalR[i][j], m_transfR);
         }
     }
 }
@@ -55,7 +62,7 @@ void TransfPixRGB::zapiszTransfKanaluG()
     {
         for(int j = 0; j < m_obraz->getWysokosc(); j++)
         {
-            kanalG[i][j] = static_cast<std::byte>(static_cast<int>(kanalG[i][j]) + m_transfG);
+            wpiszWartKanalu(&kanalG[i][j], m_transfG);;
         }
     }
 }
@@ -68,7 +75,7 @@ void TransfPixRGB::zapiszTransfKanaluB()
     {
         for(int j = 0; j < m_obraz->getWysokosc(); j++)
         {
-            kanalB[i][j] = static_cast<std::byte>(static_cast<int>(kanalB[i][j]) + m_transfB);
+            wpiszWartKanalu(&kanalB[i][j], m_transfB);
         }
     }
 }

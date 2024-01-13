@@ -15,20 +15,23 @@ class Program : public QObject
     Q_OBJECT
 public:
     ObrazRGB* zdjecieObecne;
-    explicit Program(QObject *parent = nullptr)
-        :QObject (parent) {}
+    explicit Program(QObject *parent = nullptr);
     void setGUI(MainWindow *ui = nullptr) {GUI = ui;}
 
 private:
     MainWindow *GUI = nullptr;
+    TransfPixRGB tRGB;
 
 signals:
 
 private slots:
-    void on_WybierzZdjecie();
-    void on_MirrorX();
-    void on_MirrorY();
-    void on_Test();
+    void on_wybierzZdjecie();
+    void on_mirrorX();
+    void on_mirrorY();
+    void on_test();
+    void on_zmianaWartR(int R);
+    void on_zmianaWartG(int G);
+    void on_zmianaWartB(int B);
 };
 
 #endif // PROGRAM_H

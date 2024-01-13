@@ -22,19 +22,25 @@ public:
     ~MainWindow();
 
 signals:
-    void WybierzZdjecie();
-    void MirrorX();
-    void MirrorY();
-    void Test();
+    void wybierzZdjecie();
+    void mirrorX();
+    void mirrorY();
+    void test();
+    void zmianaWartR(int R);
+    void zmianaWartG(int G);
+    void zmianaWartB(int B);
 
 private slots:
     void on_BtnWybierzZdjecie_clicked();
     void on_BtnOdbicieOsiX_clicked();
     void on_BtnOdbicieOsiY_clicked();
-    void on_BtnTest_clicked();
+    void on_BtnTest_clicked();   
+    void on_SliderR_valueChanged(int value);
+    void on_CbxR_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui = nullptr;
     Program *mainApp = nullptr;
+    void odswiezZdjecie();
 };
 #endif // MAINWINDOW_H
