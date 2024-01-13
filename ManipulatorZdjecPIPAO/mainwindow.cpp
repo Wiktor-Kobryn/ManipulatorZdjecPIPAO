@@ -83,3 +83,27 @@ void MainWindow::on_CbxR_valueChanged(int arg1)
     ui->SliderR->setValue(arg1);
 }
 
+void MainWindow::on_SliderG_valueChanged(int value)
+{
+    ui->CbxG->setValue(value);
+    emit zmianaWartG(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_SliderB_valueChanged(int value)
+{
+    ui->CbxB->setValue(value);
+    emit zmianaWartB(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_CbxB_valueChanged(int arg1)
+{
+    ui->SliderB->setValue(arg1);
+}
+
+void MainWindow::on_CbxG_valueChanged(int arg1)
+{
+    ui->SliderG->setValue(arg1);
+}
+

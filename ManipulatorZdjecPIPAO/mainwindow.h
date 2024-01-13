@@ -37,6 +37,11 @@ private slots:
     void on_BtnTest_clicked();   
     void on_SliderR_valueChanged(int value);
     void on_CbxR_valueChanged(int arg1);
+    void on_SliderG_valueChanged(int value);
+    void on_SliderB_valueChanged(int value);
+    void on_CbxB_valueChanged(int arg1);
+
+    void on_CbxG_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui = nullptr;

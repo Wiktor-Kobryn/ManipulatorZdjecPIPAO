@@ -8,16 +8,17 @@ TransfPixRGB::TransfPixRGB(ObrazRGB* obraz, int transfR, int transfG, int transf
     setTransformacje(transfR, transfG, transfB);
 }
 
+TransfPixRGB::TransfPixRGB(ObrazRGB* obraz)
+    :TransfPix(obraz)
+{}
+
+
 void TransfPixRGB::setTransformacje(int transfR, int transfG, int transfB)
 {
     m_transfB = transfB;
     m_transfG = transfG;
     m_transfR = transfR;
 }
-
-TransfPixRGB::TransfPixRGB(ObrazRGB* obraz)
-    :TransfPix(obraz)
-{}
 
 void TransfPixRGB::zapiszZmianeObrazu()
 {
@@ -37,6 +38,8 @@ void TransfPixRGB::wpiszWartKanalu(std::byte* wartosc, int przesuniecie)
 
     if(nowaWartosc > 255)
         nowaWartosc = 255;
+    else if(nowaWartosc < 0)
+        nowaWartosc = 0;
 
     *wartosc = static_cast<std::byte>(nowaWartosc);
 }
@@ -52,6 +55,7 @@ void TransfPixRGB::zapiszTransfKanaluR()
             wpiszWartKanalu(&kanalR[i][j], m_transfR);
         }
     }
+    zerujTransformacje();
 }
 
 void TransfPixRGB::zapiszTransfKanaluG()
@@ -62,9 +66,10 @@ void TransfPixRGB::zapiszTransfKanaluG()
     {
         for(int j = 0; j < m_obraz->getWysokosc(); j++)
         {
-            wpiszWartKanalu(&kanalG[i][j], m_transfG);;
+            wpiszWartKanalu(&kanalG[i][j], m_transfG);
         }
     }
+    zerujTransformacje();
 }
 
 void TransfPixRGB::zapiszTransfKanaluB()
@@ -78,6 +83,7 @@ void TransfPixRGB::zapiszTransfKanaluB()
             wpiszWartKanalu(&kanalB[i][j], m_transfB);
         }
     }
+    zerujTransformacje();
 }
 
 void TransfPixRGB::zerujTransformacje()

@@ -20,7 +20,7 @@ public:
 
 private:
     MainWindow *GUI = nullptr;
-    TransfPixRGB tRGB;
+    TransfPixRGB tRGB, tRGBmemory;
 
 signals:
 

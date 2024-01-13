@@ -3,15 +3,14 @@
 
 Program::Program(QObject *parent)
     :QObject (parent)
-{
-    tRGB = TransfPixRGB(zdjecieObecne);
-}
+{}
 
 void Program::on_wybierzZdjecie()
 {
     //tu implementacja dodawania zdjęcia z pliku!!!
 
-    qInfo() << "działa slot";
+    //dodanie referencji do obrazu dla transformacji
+    tRGB.setObraz(zdjecieObecne);
 }
 
 void Program::on_mirrorX()
@@ -28,25 +27,41 @@ void Program::on_mirrorY()
 
 void Program::on_zmianaWartR(int R)
 {
-    /*
-    tRGB.setTransfR(R);
-    std::cerr << "transf: " << tRGB.getTransfR() << ", " << tRGB.getObraz() << "\n";
-    tRGB.zapiszTransfKanaluR();*/
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = R - tRGBmemory.getTransfR();
 
-    TransfPixRGB _tRGB(zdjecieObecne, R, 0, 0);
-    _tRGB.zapiszZmianeObrazu();
+        tRGB.setTransfR(przesuniecie);
+        tRGB.zapiszTransfKanaluR();
+
+        tRGBmemory.setTransfR(R);
+    }
 }
 
 void Program::on_zmianaWartG(int G)
 {
-    tRGB.setTransfG(G);
-    tRGB.zapiszTransfKanaluG();
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = G - tRGBmemory.getTransfG();
+
+        tRGB.setTransfG(przesuniecie);
+        tRGB.zapiszTransfKanaluG();
+
+        tRGBmemory.setTransfG(G);
+    }
 }
 
 void Program::on_zmianaWartB(int B)
 {
-    tRGB.setTransfB(B);
-    tRGB.zapiszTransfKanaluB();
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = B - tRGBmemory.getTransfB();
+
+        tRGB.setTransfB(przesuniecie);
+        tRGB.zapiszTransfKanaluB();
+
+        tRGBmemory.setTransfB(B);
+    }
 }
 
 void Program::on_test()
