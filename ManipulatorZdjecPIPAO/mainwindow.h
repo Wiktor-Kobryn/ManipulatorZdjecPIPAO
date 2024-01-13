@@ -1,9 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#pragma once
+
 #include <QMainWindow>
 #include <qdebug.h>
-#include <manipulatorzdjec.h>
+#include <obraz.h>
 
 class Program;
 
@@ -25,13 +25,13 @@ signals:
     void WybierzZdjecie();
     void MirrorX();
     void MirrorY();
+    void Test();
 
 private slots:
     void on_BtnWybierzZdjecie_clicked();
-
     void on_BtnOdbicieOsiX_clicked();
-
     void on_BtnOdbicieOsiY_clicked();
+    void on_BtnTest_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

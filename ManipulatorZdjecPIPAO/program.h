@@ -1,19 +1,20 @@
-#pragma once
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
 #include <QObject>
 #include <qdebug.h>
-#include "manipulatorzdjec.h"
+
+#include "obraz.h"
 #include "QDialog"
 #include "QFileDialog"
+#include "transformacje.h"
 class MainWindow;
 
 class Program : public QObject
 {
     Q_OBJECT
 public:
-    zdjecie* zdjecieObecne;
+    ObrazRGB* zdjecieObecne;
     explicit Program(QObject *parent = nullptr)
         :QObject (parent) {}
     void setGUI(MainWindow *ui = nullptr) {GUI = ui;}
@@ -27,7 +28,7 @@ private slots:
     void on_WybierzZdjecie();
     void on_MirrorX();
     void on_MirrorY();
-
+    void on_Test();
 };
 
 #endif // PROGRAM_H
