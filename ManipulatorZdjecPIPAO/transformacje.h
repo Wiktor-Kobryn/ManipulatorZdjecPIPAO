@@ -36,8 +36,8 @@ public:
     int getTransfB() {return m_transfB;}
     void setTransformacje(int transfR, int transfG, int transfB);
     void setTransfR(int R) {m_transfR = R;}
-    void setTransfG(int G) {m_transfR = G;}
-    void setTransfB(int B) {m_transfR = B;}
+    void setTransfG(int G) {m_transfG = G;}
+    void setTransfB(int B) {m_transfB = B;}
 
     void zapiszZmianeObrazu() override;
     void zapiszTransfKanaluR();
