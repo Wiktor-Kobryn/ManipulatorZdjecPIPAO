@@ -109,7 +109,6 @@ public:
 
     void zapiszZmianeObrazu() override;
     void zerujTransformacje();
-    //void wpiszWartKanalu(std::byte* wartosc, int przesuniecie);
 };
 
 #endif // TRANSFORMACJE_H

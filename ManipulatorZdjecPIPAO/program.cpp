@@ -11,6 +11,7 @@ void Program::on_wybierzZdjecie()
 
     //dodanie referencji do obrazu dla transformacji
     tRGB.setObraz(zdjecieObecne);
+    tHSL.setObraz(zdjecieObecne);
 }
 
 void Program::on_mirrorX()
@@ -61,6 +62,45 @@ void Program::on_zmianaWartB(int B)
         tRGB.zapiszTransfKanaluB();
 
         tRGBmemory.setTransfB(B);
+    }
+}
+
+void Program::on_zmianaWartH(int H)
+{
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = H - tHSLmemory.getTransfH();
+
+        tHSL.setTransfH(przesuniecie);
+        tHSL.zapiszZmianeObrazu();
+
+        tHSLmemory.setTransfH(H);
+    }
+}
+
+void Program::on_zmianaWartS(int S)
+{
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = S - tHSLmemory.getTransfS();
+
+        tHSL.setTransfS(przesuniecie);
+        tHSL.zapiszZmianeObrazu();
+
+        tHSLmemory.setTransfS(S);
+    }
+}
+
+void Program::on_zmianaWartL(int L)
+{
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = L - tHSLmemory.getTransfL();
+
+        tHSL.setTransfL(przesuniecie);
+        tHSL.zapiszZmianeObrazu();
+
+        tHSLmemory.setTransfL(L);
     }
 }
 

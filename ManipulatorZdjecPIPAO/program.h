@@ -21,6 +21,7 @@ public:
 private:
     MainWindow *GUI = nullptr;
     TransfPixRGB tRGB, tRGBmemory;
+    TransfPixHSL tHSL, tHSLmemory;
 
 signals:
 
@@ -29,9 +30,14 @@ private slots:
     void on_mirrorX();
     void on_mirrorY();
     void on_test();
+
     void on_zmianaWartR(int R);
     void on_zmianaWartG(int G);
     void on_zmianaWartB(int B);
+
+    void on_zmianaWartH(int H);
+    void on_zmianaWartS(int S);
+    void on_zmianaWartL(int L);
 };
 
 #endif // PROGRAM_H

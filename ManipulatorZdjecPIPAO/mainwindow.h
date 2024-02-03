@@ -26,9 +26,14 @@ signals:
     void mirrorX();
     void mirrorY();
     void test();
+
     void zmianaWartR(int R);
     void zmianaWartG(int G);
     void zmianaWartB(int B);
+
+    void zmianaWartH(int H);
+    void zmianaWartS(int S);
+    void zmianaWartL(int L);
 
 private slots:
     void on_BtnWybierzZdjecie_clicked();
@@ -40,8 +45,19 @@ private slots:
     void on_SliderG_valueChanged(int value);
     void on_SliderB_valueChanged(int value);
     void on_CbxB_valueChanged(int arg1);
-
     void on_CbxG_valueChanged(int arg1);
+
+    void on_SliderH_valueChanged(int value);
+
+    void on_CbxH_valueChanged(int arg1);
+
+    void on_SliderS_valueChanged(int value);
+
+    void on_SliderL_valueChanged(int value);
+
+    void on_CbxS_valueChanged(int arg1);
+
+    void on_CbxL_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui = nullptr;
