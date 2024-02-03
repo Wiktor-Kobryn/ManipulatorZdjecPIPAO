@@ -32,7 +32,7 @@ void Program::dodaj_operacje(){
 
     }
     ObrazRGB* a = new ObrazRGB(this->zdjecieObecne->toPixmap());
-    historiaOperacji.append(a);
+    historiaOperacji.push_back(a);
     historiaIndex++;
     historiaIndex_Max++;
 }
@@ -153,7 +153,7 @@ void Program::on_test()
 }
 void Program::on_cofnij(){
 
-    if(historiaIndex>0){
+    if(historiaIndex>1){
         this->historiaIndex--;
         this->zdjecieObecne = historiaOperacji[historiaIndex];
         tRGB.setObraz(zdjecieObecne);
