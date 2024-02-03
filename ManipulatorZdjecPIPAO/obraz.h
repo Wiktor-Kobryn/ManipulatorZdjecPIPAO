@@ -23,6 +23,7 @@ public:
     virtual QPixmap toPixmap();
     virtual void odbijWzglOsiX();
     virtual void odbijWzglOsiY();
+    virtual void negatywowanie() = 0;
 
     int getSzerokosc() {return m_szerokosc;}
     int getWysokosc() {return m_wysokosc;}
@@ -43,6 +44,7 @@ private:
 public:
     void odbijWzglOsiX() override;
     void odbijWzglOsiY() override;
+    void negatywowanie() override;
     QPixmap toPixmap() override;
 
     std::byte** getKanalR() {return m_R;}

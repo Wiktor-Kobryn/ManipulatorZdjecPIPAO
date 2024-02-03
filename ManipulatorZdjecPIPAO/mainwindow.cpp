@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "program.h"
 #include "ui_mainwindow.h"
+#include "QColorDialog.h"
 
 MainWindow::MainWindow(QWidget *parent, Program *app)
     : QMainWindow(parent)
@@ -13,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     connect(this, SIGNAL(wybierzZdjecie()), app, SLOT(on_wybierzZdjecie()));
     connect(this, SIGNAL(mirrorX()), app, SLOT(on_mirrorX()));
     connect(this, SIGNAL(mirrorY()), app, SLOT(on_mirrorY()));
+    connect(this, SIGNAL(negatyw()), app, SLOT(on_negatyw()));
+
     connect(this, SIGNAL(test()), app, SLOT(on_test()));
 
     connect(this, SIGNAL(zmianaWartR(int)), app, SLOT(on_zmianaWartR(int)));
@@ -134,5 +137,40 @@ void MainWindow::on_CbxS_valueChanged(int arg1)
 void MainWindow::on_CbxL_valueChanged(int arg1)
 {
     ui->SliderL->setValue(arg1);
+}
+
+
+void MainWindow::on_BtnDialogueColorPicker_clicked()
+{
+    //Zrobię że bierze ten pixel ale
+    QColor color = QColorDialog::getColor(Qt::blue, this );
+    if( color.isValid() )
+       {
+        QString a  = "background-color: rgb(";
+                a+=QString::number(color.red()) + "," + QString::number(color.green())+"," + QString::number(color.blue()) +");";
+        ui->LblKolorMaski_2->setStyleSheet(a);
+       }
+}
+
+
+void MainWindow::on_BtnWindowColorPicker_clicked()
+{
+
+    //Dobre pytanie bo nie wiem co zrobic dalej - zbiera kolor ale zycie nie jest proste
+    QColor color = QColorDialog::getColor(Qt::blue, this );
+    if( color.isValid() )
+       {
+        QString a  = "background-color: rgb(";
+                a+=QString::number(color.red()) + "," + QString::number(color.green())+"," + QString::number(color.blue()) +");";
+        ui->LblKolorMaski_2->setStyleSheet(a);
+       }
+}
+
+
+void MainWindow::on_BtnNegatyw_clicked()
+{
+    emit negatyw();
+    odswiezZdjecie();
+
 }
 

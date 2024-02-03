@@ -22,6 +22,7 @@ void Obraz::odbijWzglOsiY() {
     //return this;
 }
 
+
 ////////////////////////////////////////////////////////////////////
 //ObrazRGB
 ////////////////////////////////////////////////////////////////////
@@ -99,6 +100,14 @@ void ObrazRGB::odbijWzglOsiY()
         }
 
 }
+void ObrazRGB::negatywowanie() {
+    for(int x = 0; x!= m_szerokosc; x++)
+        for (int y=0;y!= m_wysokosc; y++ ) {
+             m_R[x][y] = (std::byte) (255 - (int)m_R[x][y]);
+             m_G[x][y] = (std::byte) (255 - (int)m_G[x][y]);
+             m_B[x][y] = (std::byte) (255 - (int)m_B[x][y]);
+        }
+ }
 
 ObrazRGB::ObrazRGB(ObrazRGB&& other) noexcept
     : m_R(nullptr), m_G(nullptr), m_B(nullptr)

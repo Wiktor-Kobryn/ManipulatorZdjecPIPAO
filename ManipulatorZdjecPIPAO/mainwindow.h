@@ -25,6 +25,7 @@ signals:
     void wybierzZdjecie();
     void mirrorX();
     void mirrorY();
+    void negatyw();
     void test();
 
     void zmianaWartR(int R);
@@ -58,6 +59,12 @@ private slots:
     void on_CbxS_valueChanged(int arg1);
 
     void on_CbxL_valueChanged(int arg1);
+
+    void on_BtnDialogueColorPicker_clicked();
+
+    void on_BtnWindowColorPicker_clicked();
+
+    void on_BtnNegatyw_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

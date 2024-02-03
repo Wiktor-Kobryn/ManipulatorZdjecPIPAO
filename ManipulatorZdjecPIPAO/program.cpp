@@ -33,6 +33,11 @@ void Program::on_mirrorY()
     if(zdjecieObecne!=nullptr)
         zdjecieObecne->odbijWzglOsiY();
 }
+void Program::on_negatyw()
+{
+    if(zdjecieObecne!=nullptr)
+        zdjecieObecne->negatywowanie();
+}
 
 void Program::on_zmianaWartR(int R)
 {

@@ -29,6 +29,7 @@ private slots:
     void on_wybierzZdjecie();
     void on_mirrorX();
     void on_mirrorY();
+    void on_negatyw();
     void on_test();
 
     void on_zmianaWartR(int R);
