@@ -958,10 +958,10 @@ color: rgb(248, 254, 255);</string>
 color: rgb(248, 254, 255);</string>
       </property>
       <property name="minimum">
-       <number>-255</number>
+       <number>-100</number>
       </property>
       <property name="maximum">
-       <number>255</number>
+       <number>100</number>
       </property>
       <property name="singleStep">
        <number>5</number>
@@ -1124,10 +1124,10 @@ color: rgb(248, 254, 255);</string>
        <string notr="true">background-color: rgb(248, 254, 255);</string>
       </property>
       <property name="minimum">
-       <number>-255</number>
+       <number>-100</number>
       </property>
       <property name="maximum">
-       <number>255</number>
+       <number>100</number>
       </property>
      </widget>
     </widget>
