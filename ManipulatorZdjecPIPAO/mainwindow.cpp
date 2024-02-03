@@ -14,9 +14,14 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     connect(this, SIGNAL(mirrorX()), app, SLOT(on_mirrorX()));
     connect(this, SIGNAL(mirrorY()), app, SLOT(on_mirrorY()));
     connect(this, SIGNAL(test()), app, SLOT(on_test()));
+
     connect(this, SIGNAL(zmianaWartR(int)), app, SLOT(on_zmianaWartR(int)));
     connect(this, SIGNAL(zmianaWartG(int)), app, SLOT(on_zmianaWartG(int)));
     connect(this, SIGNAL(zmianaWartB(int)), app, SLOT(on_zmianaWartB(int)));
+
+    connect(this, SIGNAL(zmianaWartH(int)), app, SLOT(on_zmianaWartH(int)));
+    connect(this, SIGNAL(zmianaWartS(int)), app, SLOT(on_zmianaWartS(int)));
+    connect(this, SIGNAL(zmianaWartL(int)), app, SLOT(on_zmianaWartL(int)));
 }
 
 MainWindow::~MainWindow()
@@ -93,5 +98,41 @@ void MainWindow::on_CbxB_valueChanged(int arg1)
 void MainWindow::on_CbxG_valueChanged(int arg1)
 {
     ui->SliderG->setValue(arg1);
+}
+
+void MainWindow::on_SliderH_valueChanged(int value)
+{
+    ui->CbxH->setValue(value);
+    emit zmianaWartH(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_CbxH_valueChanged(int arg1)
+{
+    ui->SliderH->setValue(arg1);
+}
+
+void MainWindow::on_SliderS_valueChanged(int value)
+{
+    ui->CbxS->setValue(value);
+    emit zmianaWartS(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_SliderL_valueChanged(int value)
+{
+    ui->CbxL->setValue(value);
+    emit zmianaWartL(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_CbxS_valueChanged(int arg1)
+{
+    ui->SliderS->setValue(arg1);
+}
+
+void MainWindow::on_CbxL_valueChanged(int arg1)
+{
+    ui->SliderL->setValue(arg1);
 }
 

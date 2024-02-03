@@ -340,6 +340,12 @@ color: rgb(248, 254, 255);</string>
        <string notr="true">background-color: rgba(0, 0, 0, 0);
 color: rgb(248, 254, 255);</string>
       </property>
+      <property name="minimum">
+       <number>-100</number>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -355,6 +361,12 @@ color: rgb(248, 254, 255);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(248, 254, 255);</string>
+      </property>
+      <property name="minimum">
+       <number>-100</number>
+      </property>
+      <property name="maximum">
+       <number>100</number>
       </property>
      </widget>
      <widget class="QSpinBox" name="CbxKontrast">
@@ -381,6 +393,12 @@ color: rgb(248, 254, 255);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(248, 254, 255);</string>
+      </property>
+      <property name="minimum">
+       <number>-180</number>
+      </property>
+      <property name="maximum">
+       <number>180</number>
       </property>
      </widget>
      <widget class="QSlider" name="SliderKontrast">
@@ -454,6 +472,12 @@ color: rgb(248, 254, 255);</string>
        <string notr="true">background-color: rgba(0, 0, 0, 0);
 color: rgb(248, 254, 255);</string>
       </property>
+      <property name="minimum">
+       <number>-100</number>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -469,6 +493,12 @@ color: rgb(248, 254, 255);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(248, 254, 255);</string>
+      </property>
+      <property name="minimum">
+       <number>-100</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
@@ -503,6 +533,12 @@ color: rgb(248, 254, 255);</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgba(0, 0, 0, 0);
 color: rgb(248, 254, 255);</string>
+      </property>
+      <property name="minimum">
+       <number>-180</number>
+      </property>
+      <property name="maximum">
+       <number>180</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>

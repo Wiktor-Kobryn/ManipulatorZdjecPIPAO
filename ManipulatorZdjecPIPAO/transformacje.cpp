@@ -14,19 +14,31 @@ PixelRGB::PixelRGB(int R, int G, int B)
 
 void PixelRGB::setR(int R)
 {
-    if(R >= 0 && R <= 255)
+    if(R < 0)
+        m_R = 0;
+    else if(R > 255)
+        m_R = 255;
+    else
         m_R = R;
 }
 
 void PixelRGB::setG(int G)
 {
-    if(G >= 0 && G <= 255)
+    if(G < 0)
+        m_G = 0;
+    else if(G > 255)
+        m_G = 255;
+    else
         m_G = G;
 }
 
 void PixelRGB::setB(int B)
 {
-    if(B >= 0 && B <= 255)
+    if(B < 0)
+        m_B = 0;
+    else if(B > 255)
+        m_B = 255;
+    else
         m_B = B;
 }
 
@@ -88,19 +100,30 @@ PixelHSL::PixelHSL(int H, int S, int L)
 
 void PixelHSL::setH(int H)
 {
-    if(H >= 0 && H < 360)
+    //po przekroczeniu 360 stopni powrot do 0
+    if(H < 0 || H >= 360)
+        m_H = 0;
+    else
         m_H = H;
 }
 
 void PixelHSL::setS(int S)
 {
-    if(S >= 0 && S <= 100)
+    if(S < 0)
+        m_S = 0;
+    else if(S > 100)
+        m_S = 100;
+    else
         m_S = S;
 }
 
 void PixelHSL::setL(int L)
 {
-    if(L >= 0 && L <= 100)
+    if(L < 0)
+        m_L = 0;
+    else if(L > 100)
+        m_L = 100;
+    else
         m_L = L;
 }
 
@@ -286,11 +309,32 @@ void TransfPixHSL::zapiszZmianeObrazu()
 {
     if(m_obraz != nullptr)
     {
-        for(int wys = 0; wys < m_obraz->getWysokosc(); wys++)
+        std::byte** kanalR = m_obraz->getKanalR();
+        std::byte** kanalG = m_obraz->getKanalG();
+        std::byte** kanalB = m_obraz->getKanalB();
+
+        for(int i = 0; i < m_obraz->getSzerokosc(); i++)
         {
-            for(int szer = 0; szer < m_obraz->getSzerokosc(); szer++)
+            for(int j = 0; j < m_obraz->getWysokosc(); j++)
             {
-                //alg
+                int R = static_cast<int>(kanalR[i][j]);
+                int G = static_cast<int>(kanalG[i][j]);
+                int B = static_cast<int>(kanalB[i][j]);
+                PixelRGB pRGB(R, G, B);
+
+                //konwersja i dodanie transformacji
+                PixelHSL pHSL = pRGB.konwertujDoHSL();
+
+                pHSL.setH(pHSL.getH() + m_transfH);
+                pHSL.setS(pHSL.getS() + m_transfS);
+                pHSL.setL(pHSL.getL() + m_transfL);
+
+                //powrot do RGB i wpisanie wartosci do pixelu
+                pRGB = pHSL.konwertujDoRGB();
+
+                kanalR[i][j] = static_cast<std::byte>(pRGB.getR());
+                kanalG[i][j] = static_cast<std::byte>(pRGB.getG());
+                kanalB[i][j] = static_cast<std::byte>(pRGB.getB());
             }
         }
     }
