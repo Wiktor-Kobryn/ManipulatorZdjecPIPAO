@@ -56,7 +56,8 @@ QPixmap ObrazRGB::toPixmap()
 
     for (int x = 0; x < m_szerokosc; ++x) {
         for (int y = 0; y < m_wysokosc; ++y) {
-            QRgb color = qRgb(static_cast<int>(m_R[x][y]), static_cast<int>(m_G[x][y]), static_cast<int>(m_B[x][y]));
+           // QRgb color = qRgb(static_cast<int>(m_R[x][y]), static_cast<int>(m_G[x][y]), static_cast<int>(m_B[x][y]));
+            QRgb color = qRgba(static_cast<int>(m_R[x][y]), static_cast<int>(m_G[x][y]), static_cast<int>(m_B[x][y]),static_cast<int>(m_A[x][y]));
             image.setPixel(x, y, color);
         }
     }
@@ -80,6 +81,14 @@ void ObrazRGB::odbijWzglOsiY()
     }
 }
 
+void ObrazRGB::negatywowanie() {
+    for(int x = 0; x!= m_szerokosc; x++)
+        for (int y=0;y!= m_wysokosc; y++ ) {
+             m_R[x][y] = (std::byte) (255 - (int)m_R[x][y]);
+             m_G[x][y] = (std::byte) (255 - (int)m_G[x][y]);
+             m_B[x][y] = (std::byte) (255 - (int)m_B[x][y]);
+        }
+ }
  ObrazRGB::ObrazRGB(QPixmap pxm)
 {
     //QImage nie lubi jpg, lubi PNG mozna cos tu zmienic
@@ -90,6 +99,7 @@ void ObrazRGB::odbijWzglOsiY()
     m_R = alokujTablice(m_szerokosc,m_wysokosc);
     m_G = alokujTablice(m_szerokosc,m_wysokosc);
     m_B = alokujTablice(m_szerokosc,m_wysokosc);
+    m_A = alokujTablice(m_szerokosc,m_wysokosc);
 
     for(int x = 0; x!= m_szerokosc; x++)
         for (int y=0;y!= m_wysokosc; y++ ) {
@@ -97,17 +107,10 @@ void ObrazRGB::odbijWzglOsiY()
              m_R[x][y] = (std::byte) kolor.red();
              m_G[x][y] = (std::byte) kolor.green();
              m_B[x][y] = (std::byte) kolor.blue();
+             m_A[x][y] = (std::byte)  kolor.alpha();
         }
 
 }
-void ObrazRGB::negatywowanie() {
-    for(int x = 0; x!= m_szerokosc; x++)
-        for (int y=0;y!= m_wysokosc; y++ ) {
-             m_R[x][y] = (std::byte) (255 - (int)m_R[x][y]);
-             m_G[x][y] = (std::byte) (255 - (int)m_G[x][y]);
-             m_B[x][y] = (std::byte) (255 - (int)m_B[x][y]);
-        }
- }
 
 ObrazRGB::ObrazRGB(ObrazRGB&& other) noexcept
     : m_R(nullptr), m_G(nullptr), m_B(nullptr)
@@ -152,6 +155,8 @@ ObrazRGB::~ObrazRGB()
     if(m_R!=nullptr)  zwolnijTablice(m_R, m_wysokosc);
     if(m_B!=nullptr)  zwolnijTablice(m_B, m_wysokosc);
     if(m_G!=nullptr)  zwolnijTablice(m_G, m_wysokosc);
+    if(m_A!=nullptr)  zwolnijTablice(m_A, m_wysokosc);
+
 }
 
 void ObrazRGB::zamienWiersze(int wiersz1, int wiersz2)

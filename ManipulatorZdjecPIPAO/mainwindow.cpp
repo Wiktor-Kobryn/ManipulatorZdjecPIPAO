@@ -25,6 +25,11 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     connect(this, SIGNAL(zmianaWartH(int)), app, SLOT(on_zmianaWartH(int)));
     connect(this, SIGNAL(zmianaWartS(int)), app, SLOT(on_zmianaWartS(int)));
     connect(this, SIGNAL(zmianaWartL(int)), app, SLOT(on_zmianaWartL(int)));
+
+
+    connect(this, SIGNAL(cofnij()), app, SLOT(on_cofnij()));
+    connect(this, SIGNAL(ponow()), app, SLOT(on_ponow()));
+
 }
 
 MainWindow::~MainWindow()
@@ -172,5 +177,19 @@ void MainWindow::on_BtnNegatyw_clicked()
     emit negatyw();
     odswiezZdjecie();
 
+}
+
+
+void MainWindow::on_BtnCofnij_clicked()
+{
+    emit cofnij();
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_BtnPonow_clicked()
+{
+    emit ponow();
+    odswiezZdjecie();
 }
 

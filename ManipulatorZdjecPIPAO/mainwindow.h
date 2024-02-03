@@ -36,6 +36,9 @@ signals:
     void zmianaWartS(int S);
     void zmianaWartL(int L);
 
+    void cofnij();
+    void ponow();
+
 private slots:
     void on_BtnWybierzZdjecie_clicked();
     void on_BtnOdbicieOsiX_clicked();
@@ -65,6 +68,10 @@ private slots:
     void on_BtnWindowColorPicker_clicked();
 
     void on_BtnNegatyw_clicked();
+
+    void on_BtnCofnij_clicked();
+
+    void on_BtnPonow_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

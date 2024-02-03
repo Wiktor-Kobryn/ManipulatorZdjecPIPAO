@@ -22,25 +22,45 @@ void Program::on_wybierzZdjecie()
     tHSL.setObraz(zdjecieObecne);
 }
 
+void Program::dodaj_operacje(){
+    //Coś jeszcze nie dziala - tak jakby image 0 jest obecnym, dziwne//
+    if(historiaIndex<historiaIndex_Max) {
+        //Tu trzeba trzeba zerować hsitorie do punktu HistoriaIndex
+
+        historiaOperacji.resize(historiaIndex+1);
+        historiaIndex_Max=historiaIndex;
+
+    }
+    ObrazRGB* a = new ObrazRGB(this->zdjecieObecne->toPixmap());
+    historiaOperacji.append(a);
+    historiaIndex++;
+    historiaIndex_Max++;
+}
+
 void Program::on_mirrorX()
 {
+
+    dodaj_operacje();
     if(zdjecieObecne!=nullptr)
         zdjecieObecne->odbijWzglOsiX();
 }
 
 void Program::on_mirrorY()
 {
+    dodaj_operacje();
     if(zdjecieObecne!=nullptr)
         zdjecieObecne->odbijWzglOsiY();
 }
 void Program::on_negatyw()
 {
+    dodaj_operacje();
     if(zdjecieObecne!=nullptr)
         zdjecieObecne->negatywowanie();
 }
 
 void Program::on_zmianaWartR(int R)
 {
+    dodaj_operacje();
     if(zdjecieObecne != nullptr)
     {
         int przesuniecie = R - tRGBmemory.getTransfR();
@@ -54,6 +74,7 @@ void Program::on_zmianaWartR(int R)
 
 void Program::on_zmianaWartG(int G)
 {
+    dodaj_operacje();
     if(zdjecieObecne != nullptr)
     {
         int przesuniecie = G - tRGBmemory.getTransfG();
@@ -67,6 +88,7 @@ void Program::on_zmianaWartG(int G)
 
 void Program::on_zmianaWartB(int B)
 {
+    dodaj_operacje();
     if(zdjecieObecne != nullptr)
     {
         int przesuniecie = B - tRGBmemory.getTransfB();
@@ -80,6 +102,7 @@ void Program::on_zmianaWartB(int B)
 
 void Program::on_zmianaWartH(int H)
 {
+    dodaj_operacje();
     if(zdjecieObecne != nullptr)
     {
         int przesuniecie = H - tHSLmemory.getTransfH();
@@ -93,6 +116,7 @@ void Program::on_zmianaWartH(int H)
 
 void Program::on_zmianaWartS(int S)
 {
+    dodaj_operacje();
     if(zdjecieObecne != nullptr)
     {
         int przesuniecie = S - tHSLmemory.getTransfS();
@@ -106,6 +130,7 @@ void Program::on_zmianaWartS(int S)
 
 void Program::on_zmianaWartL(int L)
 {
+    dodaj_operacje();
     if(zdjecieObecne != nullptr)
     {
         int przesuniecie = L - tHSLmemory.getTransfL();
@@ -125,4 +150,27 @@ void Program::on_test()
     PixelHSL ph2(46, 17, 80);
     pr = ph2.konwertujDoRGB();
     std::cerr << "HSL(46,17,80)\tRGB(" << pr.getR() << "," << pr.getG() << "," << pr.getB() << ")\n";
+}
+void Program::on_cofnij(){
+
+    if(historiaIndex>0){
+        this->historiaIndex--;
+        this->zdjecieObecne = historiaOperacji[historiaIndex];
+        tRGB.setObraz(zdjecieObecne);
+        tHSL.setObraz(zdjecieObecne);
+        qDebug() << historiaIndex;
+
+    }
+}
+void Program::on_ponow(){
+
+        if(historiaIndex+1<historiaIndex_Max){
+            this->historiaIndex++;
+            this->zdjecieObecne = historiaOperacji[historiaIndex];
+            tRGB.setObraz(zdjecieObecne);
+            tHSL.setObraz(zdjecieObecne);
+            qDebug() << historiaIndex;
+        }
+
+
 }

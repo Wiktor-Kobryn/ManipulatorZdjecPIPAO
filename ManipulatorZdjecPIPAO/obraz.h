@@ -37,6 +37,7 @@ private:
     std::byte** m_R;
     std::byte** m_G;
     std::byte** m_B;
+    std::byte** m_A;
 
     void zamienKolumny(int kolumna1, int kolumna2);
     void zamienWiersze(int wiersz1, int wiersz2);
@@ -60,41 +61,5 @@ public:
 
     ~ObrazRGB();
 };
-
-//do usunięcia ale na razie zostawiam
-/*
-class ObrazHSL : public Obraz
-{
-private:
-    int ** H;
-    std::byte** S;
-    std::byte** L;
-public:
-    ObrazHSL(QImage img)
-    {
-        m_szerokosc = img.width();
-        m_wysokosc = img.height();
-        H = alokujTabliceInt(m_szerokosc,m_wysokosc);
-        S = alokujTablice(m_szerokosc,m_wysokosc);
-        L = alokujTablice(m_szerokosc,m_wysokosc);
-
-        for(int x = 0; x!= m_szerokosc; x++)
-            for (int y=0;y!= m_wysokosc; y++ ) {
-                 QColor kolor = img.pixel(x,y) ;
-                 H[x][y] = kolor.hue();
-                 S[x][y] = (std::byte) kolor.saturation();
-                 L[x][y] = (std::byte) kolor.lightness();
-            }
-    }
-    ObrazHSL(ObrazRGB img){
-
-    }
-
-    ~ObrazHSL(){
-        if(H!=nullptr)  zwolnijTablice(H, m_wysokosc);
-        if(S!=nullptr)  zwolnijTablice(S, m_wysokosc);
-        if(L!=nullptr)  zwolnijTablice(L, m_wysokosc);
-    }
-};*/
 
 #endif
