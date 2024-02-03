@@ -66,6 +66,10 @@ void Program::on_zmianaWartB(int B)
 
 void Program::on_test()
 {
-    TransfPixRGB _tRGB(zdjecieObecne, 10, 10, 10);
-    _tRGB.zapiszZmianeObrazu();
+    PixelRGB pr(12, 250, 67);
+    PixelHSL ph = pr.konwertujDoHSL();
+    std::cerr << "RGB(12,250,67)\tHSL(" << ph.getH() << "," << ph.getS() << "," << ph.getL() << ")\n";
+    PixelHSL ph2(46, 17, 80);
+    pr = ph2.konwertujDoRGB();
+    std::cerr << "HSL(46,17,80)\tRGB(" << pr.getR() << "," << pr.getG() << "," << pr.getB() << ")\n";
 }
