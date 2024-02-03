@@ -7,8 +7,16 @@ Program::Program(QObject *parent)
 
 void Program::on_wybierzZdjecie()
 {
-    //tu implementacja dodawania zdjęcia z pliku!!!
+    QString imagePath = QFileDialog::getOpenFileName(nullptr, "Wybierz obraz", "", "Obrazy (*.png)");
 
+    //tu implementacja dodawania zdjęcia z pliku!!!
+    if (!imagePath.isEmpty()) {
+        QPixmap image(imagePath);
+        ObrazRGB* ptr =  new ObrazRGB(image);
+        this->zdjecieObecne= ptr;
+        this->zdjecieObecne->setSciezka(imagePath.toStdString());
+
+    }
     //dodanie referencji do obrazu dla transformacji
     tRGB.setObraz(zdjecieObecne);
 }

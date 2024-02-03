@@ -28,22 +28,9 @@ void MainWindow::on_BtnWybierzZdjecie_clicked()
 {
     //to powinno być w slocie programu a nie tu!!!!! - do przeniesienia
 
-    QString imagePath = QFileDialog::getOpenFileName(this, "Wybierz obraz", "", "Obrazy (*.png)");
-    if (!imagePath.isEmpty()) {
-        QPixmap image(imagePath);
-        ObrazRGB* ptr =  new ObrazRGB(image);
-        this->mainApp->zdjecieObecne= ptr;
 
-        if (!image.isNull()) {
-          ui->LblObrazWe->setPixmap(image.scaled(ui->LblObrazWe->width(), ui->LblObrazWe->height(), Qt::KeepAspectRatio));
-          ui->LblSciezkaWe->setText(imagePath);
-
-        } else {
-          ui->LblObrazWe->setText("Nie można wczytać obrazu!");
-        }
-    }
-      emit wybierzZdjecie();
-
+    emit wybierzZdjecie();
+    ui->LblSciezkaWe->setText(QString::fromStdString(this->mainApp->zdjecieObecne->getSciezka()));
     odswiezZdjecie();
 }
 
@@ -67,6 +54,7 @@ void MainWindow::on_BtnTest_clicked()
 
 void MainWindow::odswiezZdjecie()
 {
+
     if(this->mainApp->zdjecieObecne!=nullptr)
         ui->LblObrazPodglad->setPixmap(this->mainApp->zdjecieObecne->toPixmap().scaled(ui->LblObrazPodglad->width(),ui->LblObrazPodglad->height(), Qt::KeepAspectRatio));
 }

@@ -26,6 +26,8 @@ public:
 
     int getSzerokosc() {return m_szerokosc;}
     int getWysokosc() {return m_wysokosc;}
+    std::string getSciezka(){return sciezka;}
+    void setSciezka(std::string s){sciezka = s;}
 };
 
 class ObrazRGB : public Obraz
