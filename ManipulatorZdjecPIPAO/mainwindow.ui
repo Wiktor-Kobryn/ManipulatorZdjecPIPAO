@@ -55,7 +55,7 @@ border-color: rgb(248, 254, 255);
 gridline-color: rgb(34, 32, 115);</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="TabZdjecie">
      <attribute name="title">

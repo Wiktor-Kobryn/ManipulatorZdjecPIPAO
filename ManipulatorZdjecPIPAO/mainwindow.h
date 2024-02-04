@@ -89,6 +89,12 @@ private slots:
 
     void on_BtnCofnijWszystkie_clicked();
 
+    void on_SliderR_sliderReleased();
+
+    void on_SliderG_sliderReleased();
+
+    void on_SliderB_sliderReleased();
+
 private:
     Ui::MainWindow *ui = nullptr;
     Program *mainApp = nullptr;

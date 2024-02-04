@@ -95,12 +95,10 @@ void MainWindow::odswiezZdjecie()
     if(this->mainApp->zdjecieObecne!=nullptr)
         ui->LblObrazPodglad->setPixmap(this->mainApp->zdjecieObecne->toPixmap().scaled(ui->LblObrazPodglad->width(),ui->LblObrazPodglad->height(), Qt::KeepAspectRatio));
 }
-
+//Zostawmy stare slidery to ustawiania value na boxach
 void MainWindow::on_SliderR_valueChanged(int value)
 {
     ui->CbxR->setValue(value);
-    emit zmianaWartR(value);
-    odswiezZdjecie();
 }
 
 void MainWindow::on_CbxR_valueChanged(int arg1)
@@ -111,15 +109,13 @@ void MainWindow::on_CbxR_valueChanged(int arg1)
 void MainWindow::on_SliderG_valueChanged(int value)
 {
     ui->CbxG->setValue(value);
-    emit zmianaWartG(value);
-    odswiezZdjecie();
+
 }
 
 void MainWindow::on_SliderB_valueChanged(int value)
 {
     ui->CbxB->setValue(value);
-    emit zmianaWartB(value);
-    odswiezZdjecie();
+
 }
 
 void MainWindow::on_CbxB_valueChanged(int arg1)
@@ -316,5 +312,32 @@ void MainWindow::on_BtnCofnijWszystkie_clicked()
     resetSliders();
     emit cofnijDoZera();
       odswiezZdjecie();
+}
+//Zmiany slotu Sliderow
+
+void MainWindow::on_SliderR_sliderReleased()
+{
+    int value = ui->SliderR->value();
+    ui->CbxR->setValue(value);
+    emit zmianaWartR(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderG_sliderReleased()
+{
+    int value = ui->SliderG->value();
+    ui->CbxG->setValue(value);
+    emit zmianaWartG(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderB_sliderReleased()
+{
+    int value = ui->SliderB->value();
+    ui->CbxB->setValue(value);
+    emit zmianaWartB(value);
+    odswiezZdjecie();
 }
 
