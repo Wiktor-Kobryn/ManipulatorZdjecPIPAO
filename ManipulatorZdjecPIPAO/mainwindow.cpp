@@ -18,18 +18,24 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
 
     connect(this, SIGNAL(test()), app, SLOT(on_test()));
 
+    //RGB
     connect(this, SIGNAL(zmianaWartR(int)), app, SLOT(on_zmianaWartR(int)));
     connect(this, SIGNAL(zmianaWartG(int)), app, SLOT(on_zmianaWartG(int)));
     connect(this, SIGNAL(zmianaWartB(int)), app, SLOT(on_zmianaWartB(int)));
 
+    //HSL
     connect(this, SIGNAL(zmianaWartH(int)), app, SLOT(on_zmianaWartH(int)));
     connect(this, SIGNAL(zmianaWartS(int)), app, SLOT(on_zmianaWartS(int)));
     connect(this, SIGNAL(zmianaWartL(int)), app, SLOT(on_zmianaWartL(int)));
 
+    //CMYK
+    connect(this, SIGNAL(zmianaWartC(int)), app, SLOT(on_zmianaWartC(int)));
+    connect(this, SIGNAL(zmianaWartM(int)), app, SLOT(on_zmianaWartM(int)));
+    connect(this, SIGNAL(zmianaWartY(int)), app, SLOT(on_zmianaWartY(int)));
+    connect(this, SIGNAL(zmianaWartK(int)), app, SLOT(on_zmianaWartK(int)));
 
     connect(this, SIGNAL(cofnij()), app, SLOT(on_cofnij()));
     connect(this, SIGNAL(ponow()), app, SLOT(on_ponow()));
-
 }
 
 MainWindow::~MainWindow()
@@ -144,7 +150,6 @@ void MainWindow::on_CbxL_valueChanged(int arg1)
     ui->SliderL->setValue(arg1);
 }
 
-
 void MainWindow::on_BtnDialogueColorPicker_clicked()
 {
     //Zrobię że bierze ten pixel ale
@@ -156,7 +161,6 @@ void MainWindow::on_BtnDialogueColorPicker_clicked()
         ui->LblKolorMaski_2->setStyleSheet(a);
        }
 }
-
 
 void MainWindow::on_BtnWindowColorPicker_clicked()
 {
@@ -171,7 +175,6 @@ void MainWindow::on_BtnWindowColorPicker_clicked()
        }
 }
 
-
 void MainWindow::on_BtnNegatyw_clicked()
 {
     emit negatyw();
@@ -179,17 +182,63 @@ void MainWindow::on_BtnNegatyw_clicked()
 
 }
 
-
 void MainWindow::on_BtnCofnij_clicked()
 {
     emit cofnij();
     odswiezZdjecie();
 }
 
-
 void MainWindow::on_BtnPonow_clicked()
 {
     emit ponow();
     odswiezZdjecie();
+}
+
+void MainWindow::on_SliderC_valueChanged(int value)
+{
+    ui->CbxC->setValue(value);
+    emit zmianaWartC(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_SliderM_valueChanged(int value)
+{
+    ui->CbxM->setValue(value);
+    emit zmianaWartM(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_SliderY_valueChanged(int value)
+{
+    ui->CbxY->setValue(value);
+    emit zmianaWartY(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_SliderK_valueChanged(int value)
+{
+    ui->CbxK->setValue(value);
+    emit zmianaWartK(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_CbxC_valueChanged(int arg1)
+{
+    ui->SliderC->setValue(arg1);
+}
+
+void MainWindow::on_CbxM_valueChanged(int arg1)
+{
+    ui->SliderM->setValue(arg1);
+}
+
+void MainWindow::on_CbxY_valueChanged(int arg1)
+{
+    ui->SliderY->setValue(arg1);
+}
+
+void MainWindow::on_CbxK_valueChanged(int arg1)
+{
+    ui->SliderK->setValue(arg1);
 }
 

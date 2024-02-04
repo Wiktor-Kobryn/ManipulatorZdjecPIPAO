@@ -36,6 +36,11 @@ signals:
     void zmianaWartS(int S);
     void zmianaWartL(int L);
 
+    void zmianaWartC(int C);
+    void zmianaWartM(int M);
+    void zmianaWartY(int Y);
+    void zmianaWartK(int K);
+
     void cofnij();
     void ponow();
 
@@ -50,28 +55,33 @@ private slots:
     void on_SliderB_valueChanged(int value);
     void on_CbxB_valueChanged(int arg1);
     void on_CbxG_valueChanged(int arg1);
-
     void on_SliderH_valueChanged(int value);
-
     void on_CbxH_valueChanged(int arg1);
-
     void on_SliderS_valueChanged(int value);
-
     void on_SliderL_valueChanged(int value);
-
     void on_CbxS_valueChanged(int arg1);
-
     void on_CbxL_valueChanged(int arg1);
-
     void on_BtnDialogueColorPicker_clicked();
-
     void on_BtnWindowColorPicker_clicked();
-
     void on_BtnNegatyw_clicked();
-
     void on_BtnCofnij_clicked();
-
     void on_BtnPonow_clicked();
+
+    void on_SliderC_valueChanged(int value);
+
+    void on_SliderM_valueChanged(int value);
+
+    void on_SliderY_valueChanged(int value);
+
+    void on_SliderK_valueChanged(int value);
+
+    void on_CbxC_valueChanged(int arg1);
+
+    void on_CbxM_valueChanged(int arg1);
+
+    void on_CbxY_valueChanged(int arg1);
+
+    void on_CbxK_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui = nullptr;

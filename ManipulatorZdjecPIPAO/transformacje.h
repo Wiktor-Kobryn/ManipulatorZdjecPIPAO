@@ -26,6 +26,7 @@ public:
     void setB(int B);
 
     PixelHSL konwertujDoHSL();
+    PixelCMYK konwertujDoCMYK();
 };
 
 class PixelHSL
@@ -43,6 +44,27 @@ public:
     void setH(int H);
     void setS(int S);
     void setL(int L);
+
+    PixelRGB konwertujDoRGB();
+};
+
+class PixelCMYK
+{
+private:
+    int m_C = 0, m_M = 0, m_Y = 0, m_K = 0;
+
+public:
+    PixelCMYK(int C, int M, int Y, int K);
+    PixelCMYK() {}
+
+    int getC() {return m_C;}
+    int getM() {return m_M;}
+    int getY() {return m_Y;}
+    int getK() {return m_K;}
+    void setC(int C);
+    void setM(int M);
+    void setY(int Y);
+    void setK(int K);
 
     PixelRGB konwertujDoRGB();
 };
@@ -106,6 +128,30 @@ public:
     void setTransfH(int H) {m_transfH = H;}
     void setTransfS(int S) {m_transfS = S;}
     void setTransfL(int L) {m_transfL = L;}
+
+    void zapiszZmianeObrazu() override;
+    void zerujTransformacje();
+};
+
+class TransfPixCMYK : public TransfPix
+{
+private:
+    int m_transfC = 0, m_transfM = 0, m_transfY = 0, m_transfK = 0;
+
+public:
+    TransfPixCMYK() :TransfPix() {}
+    TransfPixCMYK(ObrazRGB* obraz, int transfC, int transfM, int transfY, int transfK);
+    TransfPixCMYK(ObrazRGB* obraz);
+
+    int getTransfC() {return m_transfC;}
+    int getTransfM() {return m_transfM;}
+    int getTransfY() {return m_transfY;}
+    int getTransfK() {return m_transfK;}
+    void setTransformacje(int transfC, int transfM, int transfY, int transfK);
+    void setTransfC(int C) {m_transfC = C;}
+    void setTransfM(int M) {m_transfM = M;}
+    void setTransfY(int Y) {m_transfY = Y;}
+    void setTransfK(int K) {m_transfK = K;}
 
     void zapiszZmianeObrazu() override;
     void zerujTransformacje();

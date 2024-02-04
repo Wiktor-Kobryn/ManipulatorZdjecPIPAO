@@ -10,27 +10,31 @@ void Program::on_wybierzZdjecie()
     QString imagePath = QFileDialog::getOpenFileName(nullptr, "Wybierz obraz", "", "Obrazy (*.png)");
 
     //tu implementacja dodawania zdjęcia z pliku!!!
-    if (!imagePath.isEmpty()) {
+    if (!imagePath.isEmpty())
+    {
         QPixmap image(imagePath);
         ObrazRGB* ptr =  new ObrazRGB(image);
         this->zdjecieObecne= ptr;
         this->zdjecieObecne->setSciezka(imagePath.toStdString());
-
     }
+
     //dodanie referencji do obrazu dla transformacji
     tRGB.setObraz(zdjecieObecne);
     tHSL.setObraz(zdjecieObecne);
+    tCMYK.setObraz(zdjecieObecne);
 }
 
-void Program::dodaj_operacje(){
+void Program::dodaj_operacje()
+{
     //Coś jeszcze nie dziala - tak jakby image 0 jest obecnym, dziwne//
-    if(historiaIndex<historiaIndex_Max) {
+    if(historiaIndex<historiaIndex_Max)
+    {
         //Tu trzeba trzeba zerować hsitorie do punktu HistoriaIndex
 
         historiaOperacji.resize(historiaIndex+1);
         historiaIndex_Max=historiaIndex;
-
     }
+
     ObrazRGB* a = new ObrazRGB(this->zdjecieObecne->toPixmap());
     historiaOperacji.push_back(a);
     historiaIndex++;
@@ -51,6 +55,7 @@ void Program::on_mirrorY()
     if(zdjecieObecne!=nullptr)
         zdjecieObecne->odbijWzglOsiY();
 }
+
 void Program::on_negatyw()
 {
     dodaj_operacje();
@@ -150,10 +155,19 @@ void Program::on_test()
     PixelHSL ph2(46, 17, 80);
     pr = ph2.konwertujDoRGB();
     std::cerr << "HSL(46,17,80)\tRGB(" << pr.getR() << "," << pr.getG() << "," << pr.getB() << ")\n";
-}
-void Program::on_cofnij(){
 
-    if(historiaIndex>1){
+    PixelRGB prg(123, 12, 76);
+    PixelCMYK pc = prg.konwertujDoCMYK();
+    std::cerr << "RGB(123,12,76)\tCMYK(" << pc.getC() << "," << pc.getM() << "," << pc.getY() << "," << pc.getK() << ")\n";
+    PixelCMYK pc2(17, 89, 71, 3);
+    prg = pc2.konwertujDoRGB();
+    std::cerr << "CMYK(17,89,71,3)\tRGB(" << prg.getR() << "," << prg.getG() << "," << prg.getB() << ")\n";
+}
+
+void Program::on_cofnij()
+{
+    if(historiaIndex > 1)
+    {
         this->historiaIndex--;
         this->zdjecieObecne = historiaOperacji[historiaIndex];
         tRGB.setObraz(zdjecieObecne);
@@ -162,15 +176,73 @@ void Program::on_cofnij(){
 
     }
 }
-void Program::on_ponow(){
 
-        if(historiaIndex+1<historiaIndex_Max){
-            this->historiaIndex++;
-            this->zdjecieObecne = historiaOperacji[historiaIndex];
-            tRGB.setObraz(zdjecieObecne);
-            tHSL.setObraz(zdjecieObecne);
-            qDebug() << historiaIndex;
+void Program::on_ponow()
+{
+    if(historiaIndex+1 < historiaIndex_Max)
+    {
+        this->historiaIndex++;
+        this->zdjecieObecne = historiaOperacji[historiaIndex];
+        tRGB.setObraz(zdjecieObecne);
+        tHSL.setObraz(zdjecieObecne);
+        qDebug() << historiaIndex;
+    }
+}
+
+void Program::on_zmianaWartC(int C)
+{
+    dodaj_operacje();
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = C - tCMYKmemory.getTransfC();
+
+        tCMYK.setTransfC(przesuniecie);
+        tCMYK.zapiszZmianeObrazu();
+
+        tCMYKmemory.setTransfC(C);
+    }
+}
+
+void Program::on_zmianaWartM(int M)
+{
+    dodaj_operacje();
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = M - tCMYKmemory.getTransfM();
+
+        tCMYK.setTransfM(przesuniecie);
+        tCMYK.zapiszZmianeObrazu();
+
+        tCMYKmemory.setTransfM(M);
+    }
+}
+
+void Program::on_zmianaWartY(int Y)
+{
+    dodaj_operacje();
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecie = Y - tCMYKmemory.getTransfY();
+
+        tCMYK.setTransfY(przesuniecie);
+        tCMYK.zapiszZmianeObrazu();
+
+        tCMYKmemory.setTransfY(Y);
+    }
+}
+
+void Program::on_zmianaWartK(int K)
+{
+    {
+        dodaj_operacje();
+        if(zdjecieObecne != nullptr)
+        {
+            int przesuniecie = K - tCMYKmemory.getTransfK();
+
+            tCMYK.setTransfK(przesuniecie);
+            tCMYK.zapiszZmianeObrazu();
+
+            tCMYKmemory.setTransfK(K);
         }
-
-
+    }
 }

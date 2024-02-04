@@ -87,6 +87,32 @@ PixelHSL PixelRGB::konwertujDoHSL()
     return PixelHSL(H, (int)S, (int)L);
 }
 
+PixelCMYK PixelRGB::konwertujDoCMYK()
+{
+    //wzor
+    //https://www.rapidtables.com/convert/color/rgb-to-cmyk.html
+
+    //wartosci pomocnicze
+    double Rp = m_R / 255.0;
+    double Gp = m_G / 255.0;
+    double Bp = m_B / 255.0;
+
+    double Kp = 1.0 - max(Rp, max(Gp, Bp));
+    double x = 1.0 - Kp;
+
+    double Cp = 1.0 - Rp / x;
+    double Mp = 1.0 - Gp / x;
+    double Yp = 1.0 - Bp / x;
+
+    //zmiana zakresu na <0;100>
+    int C = (int)(Cp * 100.0);
+    int M = (int)(Mp * 100.0);
+    int Y = (int)(Yp * 100.0);
+    int K = (int)(Kp * 100.0);
+
+    return PixelCMYK(C, M, Y, K);
+}
+
 //////////////////////////////
 //PixelHSL
 //////////////////////////////
@@ -185,6 +211,78 @@ PixelRGB PixelHSL::konwertujDoRGB()
     int R = (int)((Rp + m) * 255.0);
     int G = (int)((Gp + m) * 255.0);
     int B = (int)((Bp + m) * 255.0);
+
+    return PixelRGB(R, G, B);
+}
+
+//////////////////////////////
+//PixelCMYK
+//////////////////////////////
+
+PixelCMYK::PixelCMYK(int C, int M, int Y, int K)
+{
+    setC(C);
+    setM(M);
+    setY(Y);
+    setK(K);
+}
+
+void PixelCMYK::setC(int C)
+{
+    if(C < 0)
+        m_C = 0;
+    else if(C > 100)
+        m_C = 100;
+    else
+        m_C = C;
+}
+
+void PixelCMYK::setM(int M)
+{
+    if(M < 0)
+        m_M = 0;
+    else if(M > 100)
+        m_M = 100;
+    else
+        m_M = M;
+}
+
+void PixelCMYK::setY(int Y)
+{
+    if(Y < 0)
+        m_Y = 0;
+    else if(Y > 100)
+        m_Y = 100;
+    else
+        m_Y = Y;
+}
+
+void PixelCMYK::setK(int K)
+{
+    if(K < 0)
+        m_K = 0;
+    else if(K > 100)
+        m_K = 100;
+    else
+        m_K = K;
+}
+
+PixelRGB PixelCMYK::konwertujDoRGB()
+{
+    //wzor
+    //https://www.rapidtables.com/convert/color/cmyk-to-rgb.html
+
+    //wartosci pomocnicze - zmiana zakresow na <0;1>
+    double C = (double)m_C / 100.0;
+    double M = (double)m_M / 100.0;
+    double Y = (double)m_Y / 100.0;
+    double K = (double)m_K / 100.0;
+
+    double x = 255.0 * (1.0 - K);
+
+    int R = (int)(x * (1.0 - C));
+    int G = (int)(x * (1.0 - M));
+    int B = (int)(x * (1.0 - Y));
 
     return PixelRGB(R, G, B);
 }
@@ -345,4 +443,70 @@ void TransfPixHSL::zerujTransformacje()
     m_transfH = 0;
     m_transfS = 0;
     m_transfL = 0;
+}
+
+//////////////////////////////
+//TransfPixCMYK
+//////////////////////////////
+
+TransfPixCMYK::TransfPixCMYK(ObrazRGB* obraz, int transfC, int transfM, int transfY, int transfK)
+    :TransfPix(obraz)
+{
+    setTransformacje(transfC, transfM, transfY, transfK);
+}
+
+TransfPixCMYK::TransfPixCMYK(ObrazRGB* obraz)
+    :TransfPix(obraz)
+{}
+
+void TransfPixCMYK::setTransformacje(int transfC, int transfM, int transfY, int transfK)
+{
+    m_transfC = transfC;
+    m_transfM = transfM;
+    m_transfY = transfY;
+    m_transfK = transfK;
+}
+
+void TransfPixCMYK::zapiszZmianeObrazu()
+{
+    if(m_obraz != nullptr)
+    {
+        std::byte** kanalR = m_obraz->getKanalR();
+        std::byte** kanalG = m_obraz->getKanalG();
+        std::byte** kanalB = m_obraz->getKanalB();
+
+        for(int i = 0; i < m_obraz->getSzerokosc(); i++)
+        {
+            for(int j = 0; j < m_obraz->getWysokosc(); j++)
+            {
+                int R = static_cast<int>(kanalR[i][j]);
+                int G = static_cast<int>(kanalG[i][j]);
+                int B = static_cast<int>(kanalB[i][j]);
+                PixelRGB pRGB(R, G, B);
+
+                //konwersja i dodanie transformacji
+                PixelCMYK pCMYK = pRGB.konwertujDoCMYK();
+
+                pCMYK.setC(pCMYK.getC() + m_transfC);
+                pCMYK.setM(pCMYK.getM() + m_transfM);
+                pCMYK.setY(pCMYK.getY() + m_transfY);
+                pCMYK.setK(pCMYK.getK() + m_transfK);
+
+                //powrot do RGB i wpisanie wartosci do pixelu
+                pRGB = pCMYK.konwertujDoRGB();
+
+                kanalR[i][j] = static_cast<std::byte>(pRGB.getR());
+                kanalG[i][j] = static_cast<std::byte>(pRGB.getG());
+                kanalB[i][j] = static_cast<std::byte>(pRGB.getB());
+            }
+        }
+    }
+}
+
+void TransfPixCMYK::zerujTransformacje()
+{
+    m_transfC = 0;
+    m_transfM = 0;
+    m_transfY = 0;
+    m_transfK = 0;
 }

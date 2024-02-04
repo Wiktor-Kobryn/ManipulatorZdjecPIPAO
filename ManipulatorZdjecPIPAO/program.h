@@ -23,6 +23,8 @@ private:
     MainWindow *GUI = nullptr;
     TransfPixRGB tRGB, tRGBmemory;
     TransfPixHSL tHSL, tHSLmemory;
+    TransfPixCMYK tCMYK, tCMYKmemory;
+
     QVector<ObrazRGB*> historiaOperacji;
     int historiaIndex =0    ;
     int historiaIndex_Max = 0;
@@ -43,6 +45,11 @@ private slots:
     void on_zmianaWartH(int H);
     void on_zmianaWartS(int S);
     void on_zmianaWartL(int L);
+
+    void on_zmianaWartC(int C);
+    void on_zmianaWartM(int M);
+    void on_zmianaWartY(int Y);
+    void on_zmianaWartK(int K);
 
     void on_cofnij();
     void on_ponow();
