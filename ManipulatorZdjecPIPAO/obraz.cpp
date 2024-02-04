@@ -4,7 +4,7 @@
 //Obraz
 ////////////////////////////////////////////////////////////////////
 
-//tu nie wiem czy to wgl potrzebne ale ok
+//K: W sumie to mogliśmy zrobić to Pure Virtual =0;
 
 QPixmap Obraz::toPixmap() {
     // implementacja funkcji

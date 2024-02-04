@@ -52,7 +52,11 @@ void MainWindow::on_BtnWybierzZdjecie_clicked()
     emit wybierzZdjecie();
 
     //brakuje wyswietlania samej nazwy pliku i rozmiaru
-    ui->LblSciezkaWe->setText(QString::fromStdString(this->mainApp->zdjecieObecne->getSciezka()));
+    QString sciezka= QString::fromStdString(this->mainApp->zdjecieObecne->getSciezka());
+    ui->LblSciezkaWe->setText("Sciezka: " + sciezka);
+    QStringList nazwa = sciezka.split('/');
+    ui->LblNazwaWe->setText("nazwa:"+ nazwa.last());
+    ui->LblRozmiarWe->setText("Rozmiar:" + QString::number(mainApp->zdjecieObecne->getSzerokosc()) + "x" +QString::number(mainApp->zdjecieObecne->getWysokosc()));
     odswiezZdjecie();
 }
 
