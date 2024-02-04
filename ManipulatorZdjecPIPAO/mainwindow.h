@@ -50,6 +50,7 @@ signals:
     void cofnij();
     void ponow();
 
+
 private slots:
     void on_BtnWybierzZdjecie_clicked();
     void on_BtnOdbicieOsiX_clicked();
@@ -90,5 +91,6 @@ private:
     Ui::MainWindow *ui = nullptr;
     Program *mainApp = nullptr;
     void odswiezZdjecie();
+    void resetSliders();
 };
 #endif // MAINWINDOW_H

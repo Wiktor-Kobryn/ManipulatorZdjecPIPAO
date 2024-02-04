@@ -53,6 +53,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_BtnWybierzZdjecie_clicked()
 {
+    resetSliders();
     emit wybierzZdjecie();
     if(mainApp->zdjecieObecne!=nullptr){
         //brakuje wyswietlania samej nazwy pliku i rozmiaru
@@ -291,5 +292,19 @@ void MainWindow::on_BtnZapiszZdjecie_clicked()
             }
         }
 
+}
+
+void MainWindow::resetSliders(){
+    ui->SliderS->setValue(0);
+    ui->SliderB->setValue(0);
+    ui->SliderC->setValue(0);
+    ui->SliderG->setValue(0);
+    ui->SliderH->setValue(0);
+    ui->SliderK->setValue(0);
+    ui->SliderKontrast->setValue(0);
+    ui->SliderL->setValue(0);
+    ui->SliderM->setValue(0);
+    ui->SliderY->setValue(0);
+    ui->SliderR->setValue(0);
 }
 
