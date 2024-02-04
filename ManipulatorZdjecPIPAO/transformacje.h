@@ -87,7 +87,7 @@ public:
 
 class TransfPixRGB : public TransfPix
 {
-private:
+protected:
     int m_transfR = 0, m_transfG = 0, m_transfB = 0;
 
 public:
@@ -103,7 +103,7 @@ public:
     void setTransfG(int G) {m_transfG = G;}
     void setTransfB(int B) {m_transfB = B;}
 
-    void zapiszZmianeObrazu() override;
+    virtual void zapiszZmianeObrazu() override;
     void zapiszTransfKanaluR();
     void zapiszTransfKanaluG();
     void zapiszTransfKanaluB();
@@ -155,6 +155,24 @@ public:
 
     void zapiszZmianeObrazu() override;
     void zerujTransformacje();
+};
+
+class TransfPixKlucz : public TransfPixRGB
+{
+private:
+    bool m_kolorNieWybrany = true;
+    PixelRGB m_kolorKluczowania;
+    int m_progKluczowania = 0, m_progKluczowaniaMemory = 0;
+
+public:
+    TransfPixKlucz() {}
+    TransfPixKlucz(ObrazRGB* obraz, int transfR, int transfG, int transfB);
+    TransfPixKlucz(ObrazRGB* obraz)
+        :TransfPixRGB(obraz) {}
+
+    void setProgKluczowania(int prog);
+    int getProgKluczowania() {return m_progKluczowania;}
+    void zapiszZmianeObrazu() override;
 };
 
 #endif // TRANSFORMACJE_H

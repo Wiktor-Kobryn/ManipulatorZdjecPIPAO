@@ -510,3 +510,51 @@ void TransfPixCMYK::zerujTransformacje()
     m_transfY = 0;
     m_transfK = 0;
 }
+
+
+//////////////////////////////
+//TransfPixKlucz
+//////////////////////////////
+
+TransfPixKlucz::TransfPixKlucz(ObrazRGB* obraz, int transfR, int transfG, int transfB)
+    :TransfPixRGB(obraz, transfR, transfG, transfB)
+{
+    m_kolorNieWybrany = false;
+}
+
+void TransfPixKlucz::setProgKluczowania(int prog)
+{
+    m_progKluczowaniaMemory = m_progKluczowania;
+    m_progKluczowania = prog;
+}
+
+void TransfPixKlucz::zapiszZmianeObrazu()
+{
+    if(m_obraz != nullptr && m_kolorNieWybrany == false)
+    {
+        std::byte** kanalR = m_obraz->getKanalR();
+        std::byte** kanalG = m_obraz->getKanalG();
+        std::byte** kanalB = m_obraz->getKanalB();
+
+        for(int i = 0; i < m_obraz->getSzerokosc(); i++)
+        {
+            for(int j = 0; j < m_obraz->getWysokosc(); j++)
+            {
+                int R = static_cast<int>(kanalR[i][j]);
+                int G = static_cast<int>(kanalG[i][j]);
+                int B = static_cast<int>(kanalB[i][j]);
+
+                if(m_transfR - m_progKluczowania > R || R > m_transfR + m_progKluczowania ||
+                    m_transfG - m_progKluczowania > G || G > m_transfG + m_progKluczowania ||
+                    m_transfB - m_progKluczowania > B || B > m_transfB + m_progKluczowania)
+                {
+                    //wyszarzenie obrazu jesli wartosci kanalow nie znajduja sie w zakresie
+                    int srednia = (int)((R + G + B) / 3.0);
+                    kanalR[i][j] = static_cast<std::byte>(srednia);
+                    kanalG[i][j] = static_cast<std::byte>(srednia);
+                    kanalB[i][j] = static_cast<std::byte>(srednia);
+                }
+            }
+        }
+    }
+}

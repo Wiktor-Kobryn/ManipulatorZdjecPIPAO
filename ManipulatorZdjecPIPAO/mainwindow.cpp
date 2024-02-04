@@ -163,6 +163,7 @@ void MainWindow::on_BtnWindowColorPicker_clicked()
         ui->LblKolorMaski_2->setStyleSheet(a);
 
         emit wyborKoloruKluczowania(color);
+        emit zastosujKluczowanie();
     }
 }
 
@@ -237,6 +238,7 @@ void MainWindow::on_SliderMoc_valueChanged(int value)
 {
     ui->CbxMoc->setValue(value);
     emit zmianaProguKluczowania(value);
+    emit zastosujKluczowanie();
     odswiezZdjecie();
 }
 
@@ -244,9 +246,3 @@ void MainWindow::on_CbxMoc_valueChanged(int arg1)
 {
     ui->SliderMoc->setValue(arg1);
 }
-
-void MainWindow::on_BtnZastosujKluczowanie_clicked()
-{
-
-}
-

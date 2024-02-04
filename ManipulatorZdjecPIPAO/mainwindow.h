@@ -79,7 +79,6 @@ private slots:
     void on_CbxK_valueChanged(int arg1);
     void on_SliderMoc_valueChanged(int value);
     void on_CbxMoc_valueChanged(int arg1);
-    void on_BtnZastosujKluczowanie_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

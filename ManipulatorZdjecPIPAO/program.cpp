@@ -250,17 +250,21 @@ void Program::on_wyborKoloruKluczowania(QColor kolor)
     int R = 0, G = 0, B = 0;
     kolor.getRgb(&R, &G, &B);
 
-    kolorKluczowania.setR(R);
-    kolorKluczowania.setG(G);
-    kolorKluczowania.setB(B);
+    int prog = tKlucz.getProgKluczowania();
+    tKlucz = TransfPixKlucz(zdjecieObecne, R, G, B);
+    tKlucz.setProgKluczowania(prog);
 }
 
 void Program::on_zmianaProguKluczowania(int prog)
 {
-    progKluczowania = prog;
+    tKlucz.setProgKluczowania(prog);
 }
 
 void Program::on_zastosujKluczowanie()
 {
-    //algorytm kluczowania
+    if(zdjecieObecne != nullptr)
+    {
+        dodaj_operacje();
+        tKlucz.zapiszZmianeObrazu();
+    }
 }

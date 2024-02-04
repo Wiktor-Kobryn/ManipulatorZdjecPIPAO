@@ -24,8 +24,7 @@ private:
     TransfPixRGB tRGB, tRGBmemory;
     TransfPixHSL tHSL, tHSLmemory;
     TransfPixCMYK tCMYK, tCMYKmemory;
-    PixelRGB kolorKluczowania;
-    int progKluczowania = 0;
+    TransfPixKlucz tKlucz;
 
     QVector<ObrazRGB*> historiaOperacji;
     int historiaIndex = 0;
