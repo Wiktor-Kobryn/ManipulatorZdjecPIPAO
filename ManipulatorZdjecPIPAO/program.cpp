@@ -18,6 +18,7 @@ void Program::on_wybierzZdjecie()
         this->zdjecieObecne->setSciezka(imagePath.toStdString());
     }
 
+    ustaw_referencje();
 }
 
 void Program::dodaj_operacje()
@@ -26,17 +27,18 @@ void Program::dodaj_operacje()
     if(historiaIndex<historiaIndex_Max)
     {
         //Tu trzeba trzeba zerować hsitorie do punktu HistoriaIndex
-        qDebug() << "Trzeba zrobic nowy timeline!!!" << "Usuwam " << historiaIndex << ":" << historiaIndex_Max;
+        //qDebug() << "Trzeba zrobic nowy timeline!!!" << "Usuwam " << historiaIndex << ":" << historiaIndex_Max;
         for(int i = historiaIndex_Max-1;i!=historiaIndex;i--){
+            delete historiaOperacji[i];
             historiaOperacji.removeAt(i);
-            qDebug() << "Usuwam" << i;
+        //    qDebug() << "Usuwam" << i;
         }
         historiaOperacji.resize(historiaIndex);
         historiaIndex_Max=historiaIndex;
     }
 
     ObrazRGB* a = new ObrazRGB(this->zdjecieObecne->toPixmap());
-    qDebug() << "Dodaje Operacje na " <<historiaOperacji.size();
+    //qDebug() << "Dodaje Operacje na " <<historiaOperacji.size();
     historiaOperacji.push_back(a);
     historiaIndex++;
     historiaIndex_Max++;

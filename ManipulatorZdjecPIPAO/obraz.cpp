@@ -152,6 +152,7 @@ ObrazRGB::ObrazRGB(const ObrazRGB& kopia)
 
 ObrazRGB::~ObrazRGB()
 {
+    qDebug() << "[ObrazRGB]Przestaje Istniec";
     if(m_R!=nullptr)  zwolnijTablice(m_R, m_wysokosc);
     if(m_B!=nullptr)  zwolnijTablice(m_B, m_wysokosc);
     if(m_G!=nullptr)  zwolnijTablice(m_G, m_wysokosc);
