@@ -101,11 +101,6 @@ void MainWindow::on_SliderR_valueChanged(int value)
     ui->CbxR->setValue(value);
 }
 
-void MainWindow::on_CbxR_valueChanged(int arg1)
-{
-    ui->SliderR->setValue(arg1);
-}
-
 void MainWindow::on_SliderG_valueChanged(int value)
 {
     ui->CbxG->setValue(value);
@@ -118,6 +113,12 @@ void MainWindow::on_SliderB_valueChanged(int value)
 
 }
 
+void MainWindow::on_CbxR_valueChanged(int arg1)
+{
+    ui->SliderR->setValue(arg1);
+}
+
+
 void MainWindow::on_CbxB_valueChanged(int arg1)
 {
     ui->SliderB->setValue(arg1);
@@ -128,18 +129,19 @@ void MainWindow::on_CbxG_valueChanged(int arg1)
     ui->SliderG->setValue(arg1);
 }
 
-void MainWindow::on_SliderH_valueChanged(int value)
-{
-    ui->CbxH->setValue(value);
-    emit zmianaWartH(value);
-    odswiezZdjecie();
-}
+
 
 void MainWindow::on_CbxH_valueChanged(int arg1)
 {
     ui->SliderH->setValue(arg1);
 }
 
+void MainWindow::on_SliderH_valueChanged(int value)
+{
+    ui->CbxH->setValue(value);
+    emit zmianaWartH(value);
+    odswiezZdjecie();
+}
 void MainWindow::on_SliderS_valueChanged(int value)
 {
     ui->CbxS->setValue(value);
