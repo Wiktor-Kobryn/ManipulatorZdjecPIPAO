@@ -307,6 +307,7 @@ void MainWindow::resetSliders(){
     ui->SliderM->setValue(0);
     ui->SliderY->setValue(0);
     ui->SliderR->setValue(0);
+    ui->SliderMoc->setValue(100);
 }
 
 
