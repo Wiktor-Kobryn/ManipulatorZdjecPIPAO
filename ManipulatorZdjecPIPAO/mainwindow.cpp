@@ -16,6 +16,10 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     connect(this, SIGNAL(mirrorY()), app, SLOT(on_mirrorY()));
     connect(this, SIGNAL(negatyw()), app, SLOT(on_negatyw()));
 
+    connect(this, SIGNAL(wyborKoloruKluczowania(QColor)), app, SLOT(on_wyborKoloruKluczowania(QColor)));
+    connect(this, SIGNAL(zmianaProguKluczowania(int)), app, SLOT(on_zmianaProguKluczowania(int)));
+    connect(this, SIGNAL(zastosujKluczowanie()), app, SLOT(on_zastosujKluczowanie()));
+
     connect(this, SIGNAL(test()), app, SLOT(on_test()));
 
     //RGB
@@ -45,10 +49,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_BtnWybierzZdjecie_clicked()
 {
-    //to powinno być w slocie programu a nie tu!!!!! - do przeniesienia
-
-
     emit wybierzZdjecie();
+
+    //brakuje wyswietlania samej nazwy pliku i rozmiaru
     ui->LblSciezkaWe->setText(QString::fromStdString(this->mainApp->zdjecieObecne->getSciezka()));
     odswiezZdjecie();
 }
@@ -73,7 +76,6 @@ void MainWindow::on_BtnTest_clicked()
 
 void MainWindow::odswiezZdjecie()
 {
-
     if(this->mainApp->zdjecieObecne!=nullptr)
         ui->LblObrazPodglad->setPixmap(this->mainApp->zdjecieObecne->toPixmap().scaled(ui->LblObrazPodglad->width(),ui->LblObrazPodglad->height(), Qt::KeepAspectRatio));
 }
@@ -150,29 +152,18 @@ void MainWindow::on_CbxL_valueChanged(int arg1)
     ui->SliderL->setValue(arg1);
 }
 
-void MainWindow::on_BtnDialogueColorPicker_clicked()
-{
-    //Zrobię że bierze ten pixel ale
-    QColor color = QColorDialog::getColor(Qt::blue, this );
-    if( color.isValid() )
-       {
-        QString a  = "background-color: rgb(";
-                a+=QString::number(color.red()) + "," + QString::number(color.green())+"," + QString::number(color.blue()) +");";
-        ui->LblKolorMaski_2->setStyleSheet(a);
-       }
-}
-
 void MainWindow::on_BtnWindowColorPicker_clicked()
 {
-
     //Dobre pytanie bo nie wiem co zrobic dalej - zbiera kolor ale zycie nie jest proste
-    QColor color = QColorDialog::getColor(Qt::blue, this );
+    QColor color = QColorDialog::getColor(Qt::blue, this);
     if( color.isValid() )
-       {
+    {
         QString a  = "background-color: rgb(";
-                a+=QString::number(color.red()) + "," + QString::number(color.green())+"," + QString::number(color.blue()) +");";
+        a+=QString::number(color.red()) + "," + QString::number(color.green())+"," + QString::number(color.blue()) +");";
         ui->LblKolorMaski_2->setStyleSheet(a);
-       }
+
+        emit wyborKoloruKluczowania(color);
+    }
 }
 
 void MainWindow::on_BtnNegatyw_clicked()
@@ -240,5 +231,22 @@ void MainWindow::on_CbxY_valueChanged(int arg1)
 void MainWindow::on_CbxK_valueChanged(int arg1)
 {
     ui->SliderK->setValue(arg1);
+}
+
+void MainWindow::on_SliderMoc_valueChanged(int value)
+{
+    ui->CbxMoc->setValue(value);
+    emit zmianaProguKluczowania(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_CbxMoc_valueChanged(int arg1)
+{
+    ui->SliderMoc->setValue(arg1);
+}
+
+void MainWindow::on_BtnZastosujKluczowanie_clicked()
+{
+
 }
 

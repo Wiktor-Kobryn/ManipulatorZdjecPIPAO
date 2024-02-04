@@ -24,9 +24,11 @@ private:
     TransfPixRGB tRGB, tRGBmemory;
     TransfPixHSL tHSL, tHSLmemory;
     TransfPixCMYK tCMYK, tCMYKmemory;
+    PixelRGB kolorKluczowania;
+    int progKluczowania = 0;
 
     QVector<ObrazRGB*> historiaOperacji;
-    int historiaIndex =0    ;
+    int historiaIndex = 0;
     int historiaIndex_Max = 0;
 
 signals:
@@ -37,6 +39,10 @@ private slots:
     void on_mirrorY();
     void on_negatyw();
     void on_test();
+
+    void on_wyborKoloruKluczowania(QColor kolor);
+    void on_zmianaProguKluczowania(int prog);
+    void on_zastosujKluczowanie();
 
     void on_zmianaWartR(int R);
     void on_zmianaWartG(int G);

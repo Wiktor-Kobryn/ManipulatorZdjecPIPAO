@@ -28,6 +28,10 @@ signals:
     void negatyw();
     void test();
 
+    void wyborKoloruKluczowania(QColor kolor);
+    void zmianaProguKluczowania(int prog);
+    void zastosujKluczowanie();
+
     void zmianaWartR(int R);
     void zmianaWartG(int G);
     void zmianaWartB(int B);
@@ -61,27 +65,21 @@ private slots:
     void on_SliderL_valueChanged(int value);
     void on_CbxS_valueChanged(int arg1);
     void on_CbxL_valueChanged(int arg1);
-    void on_BtnDialogueColorPicker_clicked();
     void on_BtnWindowColorPicker_clicked();
     void on_BtnNegatyw_clicked();
     void on_BtnCofnij_clicked();
     void on_BtnPonow_clicked();
-
     void on_SliderC_valueChanged(int value);
-
     void on_SliderM_valueChanged(int value);
-
     void on_SliderY_valueChanged(int value);
-
     void on_SliderK_valueChanged(int value);
-
     void on_CbxC_valueChanged(int arg1);
-
     void on_CbxM_valueChanged(int arg1);
-
     void on_CbxY_valueChanged(int arg1);
-
     void on_CbxK_valueChanged(int arg1);
+    void on_SliderMoc_valueChanged(int value);
+    void on_CbxMoc_valueChanged(int arg1);
+    void on_BtnZastosujKluczowanie_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

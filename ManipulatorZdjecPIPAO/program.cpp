@@ -233,16 +233,34 @@ void Program::on_zmianaWartY(int Y)
 
 void Program::on_zmianaWartK(int K)
 {
+    dodaj_operacje();
+    if(zdjecieObecne != nullptr)
     {
-        dodaj_operacje();
-        if(zdjecieObecne != nullptr)
-        {
-            int przesuniecie = K - tCMYKmemory.getTransfK();
+        int przesuniecie = K - tCMYKmemory.getTransfK();
 
-            tCMYK.setTransfK(przesuniecie);
-            tCMYK.zapiszZmianeObrazu();
+        tCMYK.setTransfK(przesuniecie);
+        tCMYK.zapiszZmianeObrazu();
 
-            tCMYKmemory.setTransfK(K);
-        }
+        tCMYKmemory.setTransfK(K);
     }
+}
+
+void Program::on_wyborKoloruKluczowania(QColor kolor)
+{
+    int R = 0, G = 0, B = 0;
+    kolor.getRgb(&R, &G, &B);
+
+    kolorKluczowania.setR(R);
+    kolorKluczowania.setG(G);
+    kolorKluczowania.setB(B);
+}
+
+void Program::on_zmianaProguKluczowania(int prog)
+{
+    progKluczowania = prog;
+}
+
+void Program::on_zastosujKluczowanie()
+{
+    //algorytm kluczowania
 }
