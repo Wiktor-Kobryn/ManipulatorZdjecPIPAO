@@ -60,6 +60,8 @@ private slots:
     void on_ponow();
 
     void dodaj_operacje();
+
+    void ustaw_referencje();
 };
 
 #endif // PROGRAM_H

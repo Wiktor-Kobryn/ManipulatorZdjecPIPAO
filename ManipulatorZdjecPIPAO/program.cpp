@@ -18,10 +18,6 @@ void Program::on_wybierzZdjecie()
         this->zdjecieObecne->setSciezka(imagePath.toStdString());
     }
 
-    //dodanie referencji do obrazu dla transformacji
-    tRGB.setObraz(zdjecieObecne);
-    tHSL.setObraz(zdjecieObecne);
-    tCMYK.setObraz(zdjecieObecne);
 }
 
 void Program::dodaj_operacje()
@@ -30,12 +26,17 @@ void Program::dodaj_operacje()
     if(historiaIndex<historiaIndex_Max)
     {
         //Tu trzeba trzeba zerować hsitorie do punktu HistoriaIndex
-
-        historiaOperacji.resize(historiaIndex+1);
+        qDebug() << "Trzeba zrobic nowy timeline!!!" << "Usuwam " << historiaIndex << ":" << historiaIndex_Max;
+        for(int i = historiaIndex_Max-1;i!=historiaIndex;i--){
+            historiaOperacji.removeAt(i);
+            qDebug() << "Usuwam" << i;
+        }
+        historiaOperacji.resize(historiaIndex);
         historiaIndex_Max=historiaIndex;
     }
 
     ObrazRGB* a = new ObrazRGB(this->zdjecieObecne->toPixmap());
+    qDebug() << "Dodaje Operacje na " <<historiaOperacji.size();
     historiaOperacji.push_back(a);
     historiaIndex++;
     historiaIndex_Max++;
@@ -44,30 +45,34 @@ void Program::dodaj_operacje()
 void Program::on_mirrorX()
 {
 
-    dodaj_operacje();
-    if(zdjecieObecne!=nullptr)
+    if(zdjecieObecne!=nullptr){
+        dodaj_operacje();
         zdjecieObecne->odbijWzglOsiX();
+    }
 }
 
 void Program::on_mirrorY()
 {
-    dodaj_operacje();
-    if(zdjecieObecne!=nullptr)
+    if(zdjecieObecne!=nullptr){
+        dodaj_operacje();
         zdjecieObecne->odbijWzglOsiY();
+    }
 }
 
 void Program::on_negatyw()
 {
-    dodaj_operacje();
-    if(zdjecieObecne!=nullptr)
+
+    if(zdjecieObecne!=nullptr){
+        dodaj_operacje();
         zdjecieObecne->negatywowanie();
+    }
 }
 
 void Program::on_zmianaWartR(int R)
 {
-    dodaj_operacje();
     if(zdjecieObecne != nullptr)
     {
+        dodaj_operacje();
         int przesuniecie = R - tRGBmemory.getTransfR();
 
         tRGB.setTransfR(przesuniecie);
@@ -79,9 +84,10 @@ void Program::on_zmianaWartR(int R)
 
 void Program::on_zmianaWartG(int G)
 {
-    dodaj_operacje();
+
     if(zdjecieObecne != nullptr)
     {
+        dodaj_operacje();
         int przesuniecie = G - tRGBmemory.getTransfG();
 
         tRGB.setTransfG(przesuniecie);
@@ -166,12 +172,11 @@ void Program::on_test()
 
 void Program::on_cofnij()
 {
-    if(historiaIndex > 1)
+    if(historiaIndex > 0)
     {
         this->historiaIndex--;
         this->zdjecieObecne = historiaOperacji[historiaIndex];
-        tRGB.setObraz(zdjecieObecne);
-        tHSL.setObraz(zdjecieObecne);
+        ustaw_referencje();
         qDebug() << historiaIndex;
 
     }
@@ -183,8 +188,7 @@ void Program::on_ponow()
     {
         this->historiaIndex++;
         this->zdjecieObecne = historiaOperacji[historiaIndex];
-        tRGB.setObraz(zdjecieObecne);
-        tHSL.setObraz(zdjecieObecne);
+        ustaw_referencje();
         qDebug() << historiaIndex;
     }
 }
@@ -267,4 +271,10 @@ void Program::on_zastosujKluczowanie()
         dodaj_operacje();
         tKlucz.zapiszZmianeObrazu();
     }
+}
+void Program::ustaw_referencje(){
+    //dodanie referencji do obrazu dla transformacji
+    tRGB.setObraz(zdjecieObecne);
+    tHSL.setObraz(zdjecieObecne);
+    tCMYK.setObraz(zdjecieObecne);
 }
