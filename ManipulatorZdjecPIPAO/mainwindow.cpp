@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     connect(this, SIGNAL(wyborKoloruKluczowania(QColor)), app, SLOT(on_wyborKoloruKluczowania(QColor)));
     connect(this, SIGNAL(zmianaProguKluczowania(int)), app, SLOT(on_zmianaProguKluczowania(int)));
     connect(this, SIGNAL(zastosujKluczowanie()), app, SLOT(on_zastosujKluczowanie()));
+    connect(this, SIGNAL(cofnijDoZera()), app, SLOT(on_cofnijDoZera()));
 
     connect(this, SIGNAL(test()), app, SLOT(on_test()));
 
@@ -306,5 +307,13 @@ void MainWindow::resetSliders(){
     ui->SliderM->setValue(0);
     ui->SliderY->setValue(0);
     ui->SliderR->setValue(0);
+}
+
+
+void MainWindow::on_BtnCofnijWszystkie_clicked()
+{
+    resetSliders();
+    emit cofnijDoZera();
+      odswiezZdjecie();
 }
 

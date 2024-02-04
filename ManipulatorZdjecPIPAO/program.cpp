@@ -285,3 +285,9 @@ void Program::ustaw_referencje(){
     tHSL.setObraz(zdjecieObecne);
     tCMYK.setObraz(zdjecieObecne);
 }
+
+void Program::on_cofnijDoZera(){
+    this->historiaIndex=0;
+    this->zdjecieObecne = historiaOperacji[historiaIndex];
+    ustaw_referencje();
+}

@@ -49,7 +49,7 @@ signals:
 
     void cofnij();
     void ponow();
-
+    void cofnijDoZera();
 
 private slots:
     void on_BtnWybierzZdjecie_clicked();
@@ -86,6 +86,8 @@ private slots:
     void on_HubTransfPodst_currentChanged(int index);
 
     void on_BtnZapiszZdjecie_clicked();
+
+    void on_BtnCofnijWszystkie_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

@@ -58,7 +58,7 @@ private slots:
 
     void on_cofnij();
     void on_ponow();
-
+    void on_cofnijDoZera();
     void dodaj_operacje();
 
     void ustaw_referencje();
