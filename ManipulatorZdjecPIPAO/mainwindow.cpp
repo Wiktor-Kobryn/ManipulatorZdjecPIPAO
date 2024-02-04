@@ -40,6 +40,10 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
 
     connect(this, SIGNAL(cofnij()), app, SLOT(on_cofnij()));
     connect(this, SIGNAL(ponow()), app, SLOT(on_ponow()));
+
+    //Blokada Hubu
+
+    ui->HubTransfPodst->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
@@ -53,10 +57,13 @@ void MainWindow::on_BtnWybierzZdjecie_clicked()
 
     //brakuje wyswietlania samej nazwy pliku i rozmiaru
     QString sciezka= QString::fromStdString(this->mainApp->zdjecieObecne->getSciezka());
-    ui->LblSciezkaWe->setText("Sciezka: " + sciezka);
+    ui->LblSciezkaWe->setText("sciezka: " + sciezka);
+
+    //nie jest to najoptymalniejsze zasobowo, ale programistycznie najszybsze
     QStringList nazwa = sciezka.split('/');
     ui->LblNazwaWe->setText("nazwa:"+ nazwa.last());
-    ui->LblRozmiarWe->setText("Rozmiar:" + QString::number(mainApp->zdjecieObecne->getSzerokosc()) + "x" +QString::number(mainApp->zdjecieObecne->getWysokosc()));
+
+    ui->LblRozmiarWe->setText("rozmiar:" + QString::number(mainApp->zdjecieObecne->getSzerokosc()) + "x" +QString::number(mainApp->zdjecieObecne->getWysokosc()));
     odswiezZdjecie();
 }
 
@@ -250,3 +257,12 @@ void MainWindow::on_CbxMoc_valueChanged(int arg1)
 {
     ui->SliderMoc->setValue(arg1);
 }
+
+void MainWindow::on_HubTransfPodst_currentChanged(int index)
+{
+    qDebug() << " Zmieniam";
+    if(this->mainApp->zdjecieObecne==nullptr)
+        ui->HubTransfPodst->setCurrentIndex(0);
+
+}
+

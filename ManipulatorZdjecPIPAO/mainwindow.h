@@ -80,6 +80,8 @@ private slots:
     void on_SliderMoc_valueChanged(int value);
     void on_CbxMoc_valueChanged(int arg1);
 
+    void on_HubTransfPodst_currentChanged(int index);
+
 private:
     Ui::MainWindow *ui = nullptr;
     Program *mainApp = nullptr;

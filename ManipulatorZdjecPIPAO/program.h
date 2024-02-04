@@ -15,7 +15,7 @@ class Program : public QObject
 {
     Q_OBJECT
 public:
-    ObrazRGB* zdjecieObecne;
+    ObrazRGB* zdjecieObecne = nullptr;
     explicit Program(QObject *parent = nullptr);
     void setGUI(MainWindow *ui = nullptr) {GUI = ui;}
 
