@@ -64,6 +64,8 @@ void MainWindow::on_BtnWybierzZdjecie_clicked()
         ui->LblNazwaWe->setText("nazwa:"+ nazwa.last());
 
         ui->LblRozmiarWe->setText("rozmiar:" + QString::number(mainApp->zdjecieObecne->getSzerokosc()) + "x" +QString::number(mainApp->zdjecieObecne->getWysokosc()));
+        //Ustawienie podgladu
+        ui->LblObrazWe->setPixmap(mainApp->zdjecieObecne->toPixmap());
         odswiezZdjecie();
     }
 }

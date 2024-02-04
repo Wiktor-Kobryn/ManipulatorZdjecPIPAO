@@ -57,7 +57,7 @@ QPixmap ObrazRGB::toPixmap()
     for (int x = 0; x < m_szerokosc; ++x) {
         for (int y = 0; y < m_wysokosc; ++y) {
            // QRgb color = qRgb(static_cast<int>(m_R[x][y]), static_cast<int>(m_G[x][y]), static_cast<int>(m_B[x][y]));
-            QRgb color = qRgba(static_cast<int>(m_R[x][y]), static_cast<int>(m_G[x][y]), static_cast<int>(m_B[x][y]),static_cast<int>(m_A[x][y]));
+            auto color = qRgba(static_cast<int>(m_R[x][y]), static_cast<int>(m_G[x][y]), static_cast<int>(m_B[x][y]),static_cast<int>(m_A[x][y]));
             image.setPixel(x, y, color);
         }
     }
@@ -107,7 +107,7 @@ void ObrazRGB::negatywowanie() {
              m_R[x][y] = (std::byte) kolor.red();
              m_G[x][y] = (std::byte) kolor.green();
              m_B[x][y] = (std::byte) kolor.blue();
-             m_A[x][y] = (std::byte)  kolor.alpha();
+             m_A[x][y] = (std::byte) kolor.alpha();
         }
 
 }
