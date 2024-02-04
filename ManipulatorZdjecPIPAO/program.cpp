@@ -9,6 +9,7 @@ void Program::on_wybierzZdjecie()
 {
     QString imagePath = QFileDialog::getOpenFileName(nullptr, "Wybierz obraz", "", "Obrazy (*.png)");
 
+    // qDebug() << "T" << imagePath;
     //tu implementacja dodawania zdjęcia z pliku!!!
     if (!imagePath.isEmpty())
     {
@@ -16,9 +17,13 @@ void Program::on_wybierzZdjecie()
         ObrazRGB* ptr =  new ObrazRGB(image);
         this->zdjecieObecne= ptr;
         this->zdjecieObecne->setSciezka(imagePath.toStdString());
+        ustaw_referencje();
+
+    }else{
+        qDebug() << "Jest Pusty";
+
     }
 
-    ustaw_referencje();
 }
 
 void Program::dodaj_operacje()

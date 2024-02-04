@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <qdebug.h>
 #include <obraz.h>
-
+#include "QMessageBox.h"
 class Program;
 
 QT_BEGIN_NAMESPACE
