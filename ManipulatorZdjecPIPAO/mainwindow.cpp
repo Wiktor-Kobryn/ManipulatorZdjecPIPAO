@@ -272,3 +272,24 @@ void MainWindow::on_HubTransfPodst_currentChanged(int index)
 
 }
 
+
+void MainWindow::on_BtnZapiszZdjecie_clicked()
+{
+    //Przenieść to do Program
+        QString fileName = QFileDialog::getSaveFileName(nullptr, "Zapisz obraz", "", "Obrazy PNG (*.png)");
+
+        if (!fileName.isEmpty()) {
+            if (!fileName.toLower().endsWith(".png")) {
+                fileName += ".png";
+            }
+            if(mainApp->zdjecieObecne!=nullptr){
+                if (mainApp->zdjecieObecne->toPixmap().save(fileName, "PNG")) {
+                    QMessageBox::information(nullptr, "Zapisano", "Obraz został pomyślnie zapisany do pliku.");
+                } else {
+                    QMessageBox::warning(nullptr, "Błąd", "Wystąpił błąd podczas zapisywania obrazu do pliku.");
+                }
+            }
+        }
+
+}
+

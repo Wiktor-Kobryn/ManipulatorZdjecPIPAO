@@ -52,18 +52,22 @@ for (int i = 0; i < wiersze; i++) delete[] tab[i];
 
 QPixmap ObrazRGB::toPixmap()
 {
-    QImage image(m_szerokosc, m_wysokosc, QImage::Format_RGB32);
+    QImage image(m_szerokosc, m_wysokosc, QImage::Format_RGBA64);
 
     for (int x = 0; x < m_szerokosc; ++x) {
         for (int y = 0; y < m_wysokosc; ++y) {
-           // QRgb color = qRgb(static_cast<int>(m_R[x][y]), static_cast<int>(m_G[x][y]), static_cast<int>(m_B[x][y]));
-            auto color = qRgba(static_cast<int>(m_R[x][y]), static_cast<int>(m_G[x][y]), static_cast<int>(m_B[x][y]),static_cast<int>(m_A[x][y]));
-            image.setPixel(x, y, color);
+            QColor col = qRgba(static_cast<int>(m_R[x][y]),
+                             static_cast<int>(m_G[x][y]),
+                             static_cast<int>(m_B[x][y]),
+                             static_cast<int>(m_A[x][y]));
+
+            image.setPixelColor(x, y, col);
         }
     }
 
     return QPixmap::fromImage(image);
 }
+
 
 void ObrazRGB::odbijWzglOsiX()
 {

@@ -5,6 +5,8 @@
 #include <qdebug.h>
 #include <obraz.h>
 #include "QMessageBox.h"
+#include <QFileDialog>
+
 class Program;
 
 QT_BEGIN_NAMESPACE
@@ -81,6 +83,8 @@ private slots:
     void on_CbxMoc_valueChanged(int arg1);
 
     void on_HubTransfPodst_currentChanged(int index);
+
+    void on_BtnZapiszZdjecie_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;
