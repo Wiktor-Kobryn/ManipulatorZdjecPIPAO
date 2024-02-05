@@ -55,7 +55,7 @@ border-color: rgb(248, 254, 255);
 gridline-color: rgb(34, 32, 115);</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="TabZdjecie">
      <attribute name="title">
@@ -381,6 +381,12 @@ color: rgb(248, 254, 255);</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(248, 254, 255);</string>
       </property>
+      <property name="minimum">
+       <number>-50</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
+      </property>
      </widget>
      <widget class="QSpinBox" name="CbxH">
       <property name="geometry">
@@ -413,6 +419,12 @@ color: rgb(248, 254, 255);</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgba(0, 0, 0, 0);
 color: rgb(248, 254, 255);</string>
+      </property>
+      <property name="minimum">
+       <number>-50</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>

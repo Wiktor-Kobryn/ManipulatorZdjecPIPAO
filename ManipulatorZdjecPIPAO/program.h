@@ -50,6 +50,7 @@ private slots:
     void on_zmianaWartH(int H);
     void on_zmianaWartS(int S);
     void on_zmianaWartL(int L);
+    void on_zmianaKontrastu(int kontrast);
 
     void on_zmianaWartC(int C);
     void on_zmianaWartM(int M);

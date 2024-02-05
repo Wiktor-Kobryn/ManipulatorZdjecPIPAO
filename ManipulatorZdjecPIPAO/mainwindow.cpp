@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     connect(this, SIGNAL(zmianaWartH(int)), app, SLOT(on_zmianaWartH(int)));
     connect(this, SIGNAL(zmianaWartS(int)), app, SLOT(on_zmianaWartS(int)));
     connect(this, SIGNAL(zmianaWartL(int)), app, SLOT(on_zmianaWartL(int)));
+    connect(this, SIGNAL(zmianaKontrastu(int)), app, SLOT(on_zmianaKontrastu(int)));
 
     //CMYK
     connect(this, SIGNAL(zmianaWartC(int)), app, SLOT(on_zmianaWartC(int)));
@@ -129,8 +130,6 @@ void MainWindow::on_CbxG_valueChanged(int arg1)
     ui->SliderG->setValue(arg1);
 }
 
-
-
 void MainWindow::on_CbxH_valueChanged(int arg1)
 {
     ui->SliderH->setValue(arg1);
@@ -168,7 +167,6 @@ void MainWindow::on_CbxL_valueChanged(int arg1)
 
 void MainWindow::on_BtnWindowColorPicker_clicked()
 {
-    //Dobre pytanie bo nie wiem co zrobic dalej - zbiera kolor ale zycie nie jest proste
     QColor color = QColorDialog::getColor(Qt::blue, this);
     if( color.isValid() )
     {
@@ -290,7 +288,6 @@ void MainWindow::on_BtnZapiszZdjecie_clicked()
                 }
             }
         }
-
 }
 
 void MainWindow::resetSliders(){
@@ -308,7 +305,6 @@ void MainWindow::resetSliders(){
     ui->SliderMoc->setValue(100);
 }
 
-
 void MainWindow::on_BtnCofnijWszystkie_clicked()
 {
     resetSliders();
@@ -325,7 +321,6 @@ void MainWindow::on_SliderR_sliderReleased()
     odswiezZdjecie();
 }
 
-
 void MainWindow::on_SliderG_sliderReleased()
 {
     int value = ui->SliderG->value();
@@ -334,12 +329,24 @@ void MainWindow::on_SliderG_sliderReleased()
     odswiezZdjecie();
 }
 
-
 void MainWindow::on_SliderB_sliderReleased()
 {
     int value = ui->SliderB->value();
     ui->CbxB->setValue(value);
     emit zmianaWartB(value);
     odswiezZdjecie();
+}
+
+void MainWindow::on_SliderKontrast_sliderReleased()
+{
+    int value = ui->SliderKontrast->value();
+    ui->CbxKontrast->setValue(value);
+    emit zmianaKontrastu(value);
+    odswiezZdjecie();
+}
+
+void MainWindow::on_CbxKontrast_valueChanged(int arg1)
+{
+    ui->SliderKontrast->setValue(arg1);
 }
 

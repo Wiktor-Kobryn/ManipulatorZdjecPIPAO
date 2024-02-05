@@ -41,6 +41,7 @@ signals:
     void zmianaWartH(int H);
     void zmianaWartS(int S);
     void zmianaWartL(int L);
+    void zmianaKontrastu(int kontrast);
 
     void zmianaWartC(int C);
     void zmianaWartM(int M);
@@ -82,18 +83,14 @@ private slots:
     void on_CbxK_valueChanged(int arg1);
     void on_SliderMoc_valueChanged(int value);
     void on_CbxMoc_valueChanged(int arg1);
-
     void on_HubTransfPodst_currentChanged(int index);
-
     void on_BtnZapiszZdjecie_clicked();
-
     void on_BtnCofnijWszystkie_clicked();
-
     void on_SliderR_sliderReleased();
-
     void on_SliderG_sliderReleased();
-
-    void on_SliderB_sliderReleased();
+    void on_SliderB_sliderReleased(); 
+    void on_SliderKontrast_sliderReleased();
+    void on_CbxKontrast_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui = nullptr;

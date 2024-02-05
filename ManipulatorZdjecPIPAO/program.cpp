@@ -19,9 +19,10 @@ void Program::on_wybierzZdjecie()
         this->zdjecieObecne->setSciezka(imagePath.toStdString());
         ustaw_referencje();
 
-    }else{
+    }
+    else
+    {
         qDebug() << "Jest Pusty";
-
     }
 
 }
@@ -33,7 +34,8 @@ void Program::dodaj_operacje()
     {
         //Tu trzeba trzeba zerować hsitorie do punktu HistoriaIndex
         //qDebug() << "Trzeba zrobic nowy timeline!!!" << "Usuwam " << historiaIndex << ":" << historiaIndex_Max;
-        for(int i = historiaIndex_Max-1;i!=historiaIndex;i--){
+        for(int i = historiaIndex_Max-1;i!=historiaIndex;i--)
+        {
             delete historiaOperacji[i];
             historiaOperacji.removeAt(i);
         //    qDebug() << "Usuwam" << i;
@@ -52,7 +54,8 @@ void Program::dodaj_operacje()
 void Program::on_mirrorX()
 {
 
-    if(zdjecieObecne!=nullptr){
+    if(zdjecieObecne!=nullptr)
+    {
         dodaj_operacje();
         zdjecieObecne->odbijWzglOsiX();
     }
@@ -60,7 +63,8 @@ void Program::on_mirrorX()
 
 void Program::on_mirrorY()
 {
-    if(zdjecieObecne!=nullptr){
+    if(zdjecieObecne!=nullptr)
+    {
         dodaj_operacje();
         zdjecieObecne->odbijWzglOsiY();
     }
@@ -69,7 +73,8 @@ void Program::on_mirrorY()
 void Program::on_negatyw()
 {
 
-    if(zdjecieObecne!=nullptr){
+    if(zdjecieObecne!=nullptr)
+    {
         dodaj_operacje();
         zdjecieObecne->negatywowanie();
     }
@@ -185,7 +190,6 @@ void Program::on_cofnij()
         this->zdjecieObecne = historiaOperacji[historiaIndex];
         ustaw_referencje();
         qDebug() << historiaIndex;
-
     }
 }
 
@@ -290,4 +294,21 @@ void Program::on_cofnijDoZera(){
     this->historiaIndex=0;
     this->zdjecieObecne = historiaOperacji[historiaIndex];
     ustaw_referencje();
+}
+
+void Program::on_zmianaKontrastu(int kontrast)
+{
+    dodaj_operacje();
+    if(zdjecieObecne != nullptr)
+    {
+        int przesuniecieS = kontrast - tHSLmemory.getTransfS();
+        int przesuniecieL = kontrast - tHSLmemory.getTransfL();
+
+        tHSL.setTransfS(przesuniecieS);
+        tHSL.setTransfL(przesuniecieL);
+        tHSL.zapiszZmianeObrazu();
+
+        tHSLmemory.setTransfS(kontrast);
+        tHSLmemory.setTransfL(kontrast);
+    }
 }
