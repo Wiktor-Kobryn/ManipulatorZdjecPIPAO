@@ -22,7 +22,7 @@ public:
 private:
     MainWindow *GUI = nullptr;
     TransfPixRGB tRGB, tRGBmemory;
-    TransfPixHSL tHSL, tHSLmemory;
+    TransfPixHSL tHSL, tHSLmemory, tKontrast, tKontrastMemory;
     TransfPixCMYK tCMYK, tCMYKmemory;
     TransfPixKlucz tKlucz;
 

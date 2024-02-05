@@ -183,7 +183,6 @@ void MainWindow::on_BtnNegatyw_clicked()
 {
     emit negatyw();
     odswiezZdjecie();
-
 }
 
 void MainWindow::on_BtnCofnij_clicked()
@@ -261,36 +260,42 @@ void MainWindow::on_CbxMoc_valueChanged(int arg1)
 
 void MainWindow::on_HubTransfPodst_currentChanged(int index)
 {
-    if(this->mainApp->zdjecieObecne==nullptr && index != 0){
+    if(this->mainApp->zdjecieObecne==nullptr && index != 0)
+    {
         QMessageBox error ;
         ui->HubTransfPodst->setCurrentIndex(0);
         error.setText("WYBIERZ OBRAZ!");
         error.exec();
     }
-
 }
-
 
 void MainWindow::on_BtnZapiszZdjecie_clicked()
 {
     //Przenieść to do Program
         QString fileName = QFileDialog::getSaveFileName(nullptr, "Zapisz obraz", "", "Obrazy PNG (*.png)");
 
-        if (!fileName.isEmpty()) {
-            if (!fileName.toLower().endsWith(".png")) {
+        if (!fileName.isEmpty())
+        {
+            if (!fileName.toLower().endsWith(".png"))
+            {
                 fileName += ".png";
             }
-            if(mainApp->zdjecieObecne!=nullptr){
-                if (mainApp->zdjecieObecne->toPixmap().save(fileName, "PNG")) {
+            if(mainApp->zdjecieObecne!=nullptr)
+            {
+                if (mainApp->zdjecieObecne->toPixmap().save(fileName, "PNG"))
+                {
                     QMessageBox::information(nullptr, "Zapisano", "Obraz został pomyślnie zapisany do pliku.");
-                } else {
+                }
+                else
+                {
                     QMessageBox::warning(nullptr, "Błąd", "Wystąpił błąd podczas zapisywania obrazu do pliku.");
                 }
             }
         }
 }
 
-void MainWindow::resetSliders(){
+void MainWindow::resetSliders()
+{
     ui->SliderS->setValue(0);
     ui->SliderB->setValue(0);
     ui->SliderC->setValue(0);

@@ -130,9 +130,6 @@ public:
     void setTransfL(int L) {m_transfL = L;}
 
     void zapiszZmianeObrazu() override;
-    //void zapiszTransfKanaluH();
-    //void zapiszTransfKanaluS();
-    //void zapiszTransfKanaluL();
     void zerujTransformacje();
 };
 

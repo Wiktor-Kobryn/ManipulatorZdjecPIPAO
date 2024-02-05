@@ -91,6 +91,7 @@ void Program::on_zmianaWartR(int R)
         tRGB.zapiszTransfKanaluR();
 
         tRGBmemory.setTransfR(R);
+        tRGB.zerujTransformacje();
     }
 }
 
@@ -106,6 +107,7 @@ void Program::on_zmianaWartG(int G)
         tRGB.zapiszTransfKanaluG();
 
         tRGBmemory.setTransfG(G);
+        tRGB.zerujTransformacje();
     }
 }
 
@@ -120,6 +122,7 @@ void Program::on_zmianaWartB(int B)
         tRGB.zapiszTransfKanaluB();
 
         tRGBmemory.setTransfB(B);
+        tRGB.zerujTransformacje();
     }
 }
 
@@ -134,6 +137,7 @@ void Program::on_zmianaWartH(int H)
         tHSL.zapiszZmianeObrazu();
 
         tHSLmemory.setTransfH(H);
+        tHSL.zerujTransformacje();
     }
 }
 
@@ -148,6 +152,7 @@ void Program::on_zmianaWartS(int S)
         tHSL.zapiszZmianeObrazu();
 
         tHSLmemory.setTransfS(S);
+        tHSL.zerujTransformacje();
     }
 }
 
@@ -162,6 +167,7 @@ void Program::on_zmianaWartL(int L)
         tHSL.zapiszZmianeObrazu();
 
         tHSLmemory.setTransfL(L);
+        tHSL.zerujTransformacje();
     }
 }
 
@@ -215,6 +221,7 @@ void Program::on_zmianaWartC(int C)
         tCMYK.zapiszZmianeObrazu();
 
         tCMYKmemory.setTransfC(C);
+        tCMYK.zerujTransformacje();
     }
 }
 
@@ -229,6 +236,7 @@ void Program::on_zmianaWartM(int M)
         tCMYK.zapiszZmianeObrazu();
 
         tCMYKmemory.setTransfM(M);
+        tCMYK.zerujTransformacje();
     }
 }
 
@@ -243,6 +251,7 @@ void Program::on_zmianaWartY(int Y)
         tCMYK.zapiszZmianeObrazu();
 
         tCMYKmemory.setTransfY(Y);
+        tCMYK.zerujTransformacje();
     }
 }
 
@@ -257,6 +266,7 @@ void Program::on_zmianaWartK(int K)
         tCMYK.zapiszZmianeObrazu();
 
         tCMYKmemory.setTransfK(K);
+        tCMYK.zerujTransformacje();
     }
 }
 
@@ -283,11 +293,15 @@ void Program::on_zastosujKluczowanie()
         tKlucz.zapiszZmianeObrazu();
     }
 }
-void Program::ustaw_referencje(){
+
+void Program::ustaw_referencje()
+{
     //dodanie referencji do obrazu dla transformacji
     tRGB.setObraz(zdjecieObecne);
     tHSL.setObraz(zdjecieObecne);
     tCMYK.setObraz(zdjecieObecne);
+    tKontrast.setObraz(zdjecieObecne);
+    tKlucz.setProgKluczowania(100);
 }
 
 void Program::on_cofnijDoZera(){
@@ -301,14 +315,15 @@ void Program::on_zmianaKontrastu(int kontrast)
     dodaj_operacje();
     if(zdjecieObecne != nullptr)
     {
-        int przesuniecieS = kontrast - tHSLmemory.getTransfS();
-        int przesuniecieL = kontrast - tHSLmemory.getTransfL();
+        int przesuniecieS = kontrast - tKontrastMemory.getTransfS();
+        int przesuniecieL = kontrast - tKontrastMemory.getTransfL();
 
-        tHSL.setTransfS(przesuniecieS);
-        tHSL.setTransfL(przesuniecieL);
-        tHSL.zapiszZmianeObrazu();
+        tKontrast.setTransfS(przesuniecieS);
+        tKontrast.setTransfL(przesuniecieL);
+        tKontrast.zapiszZmianeObrazu();
 
-        tHSLmemory.setTransfS(kontrast);
-        tHSLmemory.setTransfL(kontrast);
+        tKontrastMemory.setTransfS(kontrast);
+        tKontrastMemory.setTransfL(kontrast);
+        tKontrast.zerujTransformacje();
     }
 }
