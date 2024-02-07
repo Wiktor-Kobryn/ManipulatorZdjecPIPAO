@@ -10,8 +10,6 @@ void Program::on_wybierzZdjecie()
 {
     QString imagePath = QFileDialog::getOpenFileName(nullptr, "Wybierz obraz", "", "Obrazy (*.png)");
 
-    // qDebug() << "T" << imagePath;
-    //tu implementacja dodawania zdjęcia z pliku!!!
     if (!imagePath.isEmpty())
     {
         QPixmap image(imagePath);
@@ -19,7 +17,6 @@ void Program::on_wybierzZdjecie()
         this->zdjecieObecne= ptr;
         this->zdjecieObecne->setSciezka(imagePath.toStdString());
         ustaw_referencje();
-
     }
     else
     {
@@ -30,23 +27,18 @@ void Program::on_wybierzZdjecie()
 
 void Program::dodaj_operacje()
 {
-    //Coś jeszcze nie dziala - tak jakby image 0 jest obecnym, dziwne//
     if(historiaIndex<historiaIndex_Max)
     {
-        //Tu trzeba trzeba zerować hsitorie do punktu HistoriaIndex
-        //qDebug() << "Trzeba zrobic nowy timeline!!!" << "Usuwam " << historiaIndex << ":" << historiaIndex_Max;
         for(int i = historiaIndex_Max-1;i!=historiaIndex;i--)
         {
             delete historiaOperacji[i];
             historiaOperacji.removeAt(i);
-        //    qDebug() << "Usuwam" << i;
         }
         historiaOperacji.resize(historiaIndex);
         historiaIndex_Max=historiaIndex;
     }
 
     ObrazRGB* a = new ObrazRGB(this->zdjecieObecne->toPixmap());
-    //qDebug() << "Dodaje Operacje na " <<historiaOperacji.size();
     historiaOperacji.push_back(a);
     historiaIndex++;
     historiaIndex_Max++;
@@ -54,7 +46,6 @@ void Program::dodaj_operacje()
 
 void Program::on_mirrorX()
 {
-
     if(zdjecieObecne!=nullptr)
     {
         dodaj_operacje();
@@ -73,7 +64,6 @@ void Program::on_mirrorY()
 
 void Program::on_negatyw()
 {
-
     if(zdjecieObecne!=nullptr)
     {
         dodaj_operacje();
@@ -98,7 +88,6 @@ void Program::on_zmianaWartR(int R)
 
 void Program::on_zmianaWartG(int G)
 {
-
     if(zdjecieObecne != nullptr)
     {
         dodaj_operacje();
@@ -305,7 +294,8 @@ void Program::ustaw_referencje()
     tKlucz.setProgKluczowania(100);
 }
 
-void Program::on_cofnijDoZera(){
+void Program::on_cofnijDoZera()
+{
     this->historiaIndex=0;
     this->zdjecieObecne = historiaOperacji[historiaIndex];
     ustaw_referencje();

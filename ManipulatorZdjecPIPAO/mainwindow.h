@@ -57,31 +57,20 @@ private slots:
     void on_BtnOdbicieOsiX_clicked();
     void on_BtnOdbicieOsiY_clicked();
     void on_BtnTest_clicked();
-    void on_SliderR_valueChanged(int value);
     void on_CbxR_valueChanged(int arg1);
-    void on_SliderG_valueChanged(int value);
-    void on_SliderB_valueChanged(int value);
     void on_CbxB_valueChanged(int arg1);
     void on_CbxG_valueChanged(int arg1);
-    void on_SliderH_valueChanged(int value);
     void on_CbxH_valueChanged(int arg1);
-    void on_SliderS_valueChanged(int value);
-    void on_SliderL_valueChanged(int value);
     void on_CbxS_valueChanged(int arg1);
     void on_CbxL_valueChanged(int arg1);
     void on_BtnWindowColorPicker_clicked();
     void on_BtnNegatyw_clicked();
     void on_BtnCofnij_clicked();
     void on_BtnPonow_clicked();
-    void on_SliderC_valueChanged(int value);
-    void on_SliderM_valueChanged(int value);
-    void on_SliderY_valueChanged(int value);
-    void on_SliderK_valueChanged(int value);
     void on_CbxC_valueChanged(int arg1);
     void on_CbxM_valueChanged(int arg1);
     void on_CbxY_valueChanged(int arg1);
     void on_CbxK_valueChanged(int arg1);
-    void on_SliderMoc_valueChanged(int value);
     void on_CbxMoc_valueChanged(int arg1);
     void on_HubTransfPodst_currentChanged(int index);
     void on_BtnZapiszZdjecie_clicked();
@@ -91,20 +80,15 @@ private slots:
     void on_SliderB_sliderReleased();
     void on_SliderKontrast_sliderReleased();
     void on_CbxKontrast_valueChanged(int arg1);
-
     void on_SliderH_sliderReleased();
-
     void on_SliderS_sliderReleased();
-
     void on_SliderL_sliderReleased();
-
     void on_SliderC_sliderReleased();
-
     void on_SliderM_sliderReleased();
-
     void on_SliderY_sliderReleased();
-
     void on_SliderK_sliderReleased();
+
+    void on_SliderMoc_sliderReleased();
 
 private:
     Ui::MainWindow *ui = nullptr;

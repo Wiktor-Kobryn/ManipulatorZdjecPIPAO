@@ -1,18 +1,6 @@
 #include "obraz.h"
 
 ////////////////////////////////////////////////////////////////////
-//Obraz
-////////////////////////////////////////////////////////////////////
-
-//K: W sumie to mogliśmy zrobić to Pure Virtual =0;
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////
 //ObrazRGB
 ////////////////////////////////////////////////////////////////////
 
@@ -22,20 +10,23 @@ int** alokujTabliceInt(size_t numRows, size_t numCols)
    for (int i = 0; i < numRows; i++) tablica[i] = new int[numCols] ;
    return tablica;
 }
+
 std::byte** alokujTablice(size_t numRows, size_t numCols)
 {
     std::byte** tablica = new std::byte* [numRows];
     for (int i = 0; i < numRows; i++) tablica[i] = new std::byte[numCols] ;
     return tablica;
 }
+
 void zwolnijTablice( int** tab, int wiersze)
 {
-for (int i = 0; i < wiersze; i++) delete[] tab[i];
+    for (int i = 0; i < wiersze; i++) delete[] tab[i];
         delete[] tab;
 }
+
 void zwolnijTablice( std::byte** tab, int wiersze)
 {
-for (int i = 0; i < wiersze; i++) delete[] tab[i];
+    for (int i = 0; i < wiersze; i++) delete[] tab[i];
         delete[] tab;
 }
 
@@ -76,16 +67,17 @@ void ObrazRGB::odbijWzglOsiY()
 
 void ObrazRGB::negatywowanie() {
     for(int x = 0; x!= m_szerokosc; x++)
-        for (int y=0;y!= m_wysokosc; y++ ) {
+    {
+        for (int y=0;y!= m_wysokosc; y++ )
+        {
              m_R[x][y] = (std::byte) (255 - (int)m_R[x][y]);
              m_G[x][y] = (std::byte) (255 - (int)m_G[x][y]);
              m_B[x][y] = (std::byte) (255 - (int)m_B[x][y]);
         }
+    }
  }
  ObrazRGB::ObrazRGB(QPixmap pxm)
 {
-    //QImage nie lubi jpg, lubi PNG mozna cos tu zmienic
-
     QImage img = pxm.toImage();
     m_szerokosc = img.width();
     m_wysokosc = img.height();
@@ -95,14 +87,16 @@ void ObrazRGB::negatywowanie() {
     m_A = alokujTablice(m_szerokosc,m_wysokosc);
 
     for(int x = 0; x!= m_szerokosc; x++)
-        for (int y=0;y!= m_wysokosc; y++ ) {
+    {
+        for (int y=0;y!= m_wysokosc; y++ )
+        {
              QColor kolor = img.pixel(x,y) ;
              m_R[x][y] = (std::byte) kolor.red();
              m_G[x][y] = (std::byte) kolor.green();
              m_B[x][y] = (std::byte) kolor.blue();
              m_A[x][y] = (std::byte) kolor.alpha();
         }
-
+    }
 }
 
 ObrazRGB::ObrazRGB(ObrazRGB&& other) noexcept
@@ -145,19 +139,16 @@ ObrazRGB::ObrazRGB(const ObrazRGB& kopia)
 
 ObrazRGB::~ObrazRGB()
 {
-    qDebug() << "[ObrazRGB]Przestaje Istniec";
     if(m_R!=nullptr)  zwolnijTablice(m_R, m_wysokosc);
     if(m_B!=nullptr)  zwolnijTablice(m_B, m_wysokosc);
     if(m_G!=nullptr)  zwolnijTablice(m_G, m_wysokosc);
     if(m_A!=nullptr)  zwolnijTablice(m_A, m_wysokosc);
-
 }
 
 void ObrazRGB::zamienWiersze(int wiersz1, int wiersz2)
 {
     if (wiersz1 < 0 || wiersz2 < 0 || wiersz1 >= m_wysokosc || wiersz2 >= m_wysokosc)
     {
-        std::cerr << "Nieprawidlowe numery wierszy" << std::endl;
         return;
     }
 
@@ -171,12 +162,13 @@ void ObrazRGB::zamienWiersze(int wiersz1, int wiersz2)
 
 void ObrazRGB::zamienKolumny(int kolumna1, int kolumna2)
 {
-    if (kolumna1 < 0 || kolumna2 < 0 || kolumna1 >= m_szerokosc || kolumna2 >= m_szerokosc) {
-        std::cerr << "Nieprawidlowe numery kolumn" << std::endl;
+    if (kolumna1 < 0 || kolumna2 < 0 || kolumna1 >= m_szerokosc || kolumna2 >= m_szerokosc)
+    {
         return;
     }
 
-    for (int y = 0; y < m_wysokosc; y++) {
+    for (int y = 0; y < m_wysokosc; y++)
+    {
         std::swap(m_R[kolumna1][y], m_R[kolumna2][y]);
         std::swap(m_G[kolumna1][y], m_G[kolumna2][y]);
         std::swap(m_B[kolumna1][y], m_B[kolumna2][y]);

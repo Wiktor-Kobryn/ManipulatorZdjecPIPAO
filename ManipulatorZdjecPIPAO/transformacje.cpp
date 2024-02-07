@@ -511,7 +511,6 @@ void TransfPixCMYK::zerujTransformacje()
     m_transfK = 0;
 }
 
-
 //////////////////////////////
 //TransfPixKlucz
 //////////////////////////////

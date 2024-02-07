@@ -44,7 +44,6 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
     connect(this, SIGNAL(ponow()), app, SLOT(on_ponow()));
 
     //Blokada Hubu
-
     ui->HubTransfPodst->setCurrentIndex(0);
 }
 
@@ -52,15 +51,14 @@ MainWindow::~MainWindow()
 {
     delete this->mainApp;
     delete ui;
-
 }
 
 void MainWindow::on_BtnWybierzZdjecie_clicked()
 {
     resetSliders();
     emit wybierzZdjecie();
-    if(mainApp->zdjecieObecne!=nullptr){
-        //brakuje wyswietlania samej nazwy pliku i rozmiaru
+    if(mainApp->zdjecieObecne!=nullptr)
+    {
         QString sciezka= QString::fromStdString(this->mainApp->zdjecieObecne->getSciezka());
         ui->LblSciezkaWe->setText("sciezka: " + sciezka);
 
@@ -98,29 +96,11 @@ void MainWindow::odswiezZdjecie()
     if(this->mainApp->zdjecieObecne!=nullptr)
         ui->LblObrazPodglad->setPixmap(this->mainApp->zdjecieObecne->toPixmap().scaled(ui->LblObrazPodglad->width(),ui->LblObrazPodglad->height(), Qt::KeepAspectRatio));
 }
-//Zostawmy stare slidery to ustawiania value na boxach
-void MainWindow::on_SliderR_valueChanged(int value)
-{
-    ui->CbxR->setValue(value);
-}
-
-void MainWindow::on_SliderG_valueChanged(int value)
-{
-    ui->CbxG->setValue(value);
-
-}
-
-void MainWindow::on_SliderB_valueChanged(int value)
-{
-    ui->CbxB->setValue(value);
-
-}
 
 void MainWindow::on_CbxR_valueChanged(int arg1)
 {
     ui->SliderR->setValue(arg1);
 }
-
 
 void MainWindow::on_CbxB_valueChanged(int arg1)
 {
@@ -135,23 +115,6 @@ void MainWindow::on_CbxG_valueChanged(int arg1)
 void MainWindow::on_CbxH_valueChanged(int arg1)
 {
     ui->SliderH->setValue(arg1);
-}
-
-void MainWindow::on_SliderH_valueChanged(int value)
-{
-    ui->CbxH->setValue(value);
-
-}
-void MainWindow::on_SliderS_valueChanged(int value)
-{
-    ui->CbxS->setValue(value);
-
-}
-
-void MainWindow::on_SliderL_valueChanged(int value)
-{
-    ui->CbxL->setValue(value);
-
 }
 
 void MainWindow::on_CbxS_valueChanged(int arg1)
@@ -196,31 +159,6 @@ void MainWindow::on_BtnPonow_clicked()
     odswiezZdjecie();
 }
 
-void MainWindow::on_SliderC_valueChanged(int value)
-{
-    ui->CbxC->setValue(value);
-
-}
-
-void MainWindow::on_SliderM_valueChanged(int value)
-{
-    ui->CbxM->setValue(value);
-    emit zmianaWartM(value);
-    odswiezZdjecie();
-}
-
-void MainWindow::on_SliderY_valueChanged(int value)
-{
-    ui->CbxY->setValue(value);
-
-}
-
-void MainWindow::on_SliderK_valueChanged(int value)
-{
-    ui->CbxK->setValue(value);
-
-}
-
 void MainWindow::on_CbxC_valueChanged(int arg1)
 {
     ui->SliderC->setValue(arg1);
@@ -241,14 +179,6 @@ void MainWindow::on_CbxK_valueChanged(int arg1)
     ui->SliderK->setValue(arg1);
 }
 
-void MainWindow::on_SliderMoc_valueChanged(int value)
-{
-    ui->CbxMoc->setValue(value);
-    emit zmianaProguKluczowania(value);
-    emit zastosujKluczowanie();
-    odswiezZdjecie();
-}
-
 void MainWindow::on_CbxMoc_valueChanged(int arg1)
 {
     ui->SliderMoc->setValue(arg1);
@@ -267,27 +197,26 @@ void MainWindow::on_HubTransfPodst_currentChanged(int index)
 
 void MainWindow::on_BtnZapiszZdjecie_clicked()
 {
-    //Przenieść to do Program
-        QString fileName = QFileDialog::getSaveFileName(nullptr, "Zapisz obraz", "", "Obrazy PNG (*.png)");
+    QString fileName = QFileDialog::getSaveFileName(nullptr, "Zapisz obraz", "", "Obrazy PNG (*.png)");
 
-        if (!fileName.isEmpty())
+    if (!fileName.isEmpty())
+    {
+        if (!fileName.toLower().endsWith(".png"))
         {
-            if (!fileName.toLower().endsWith(".png"))
+            fileName += ".png";
+        }
+        if(mainApp->zdjecieObecne!=nullptr)
+        {
+            if (mainApp->zdjecieObecne->toPixmap().save(fileName, "PNG"))
             {
-                fileName += ".png";
+                QMessageBox::information(nullptr, "Zapisano", "Obraz został pomyślnie zapisany do pliku.");
             }
-            if(mainApp->zdjecieObecne!=nullptr)
+            else
             {
-                if (mainApp->zdjecieObecne->toPixmap().save(fileName, "PNG"))
-                {
-                    QMessageBox::information(nullptr, "Zapisano", "Obraz został pomyślnie zapisany do pliku.");
-                }
-                else
-                {
-                    QMessageBox::warning(nullptr, "Błąd", "Wystąpił błąd podczas zapisywania obrazu do pliku.");
-                }
+                QMessageBox::warning(nullptr, "Błąd", "Wystąpił błąd podczas zapisywania obrazu do pliku.");
             }
         }
+    }
 }
 
 void MainWindow::resetSliders()
@@ -303,16 +232,15 @@ void MainWindow::resetSliders()
     ui->SliderM->setValue(0);
     ui->SliderY->setValue(0);
     ui->SliderR->setValue(0);
-    ui->SliderMoc->setValue(100);
+    ui->SliderMoc->setValue(90);
 }
 
 void MainWindow::on_BtnCofnijWszystkie_clicked()
 {
     resetSliders();
     emit cofnijDoZera();
-      odswiezZdjecie();
+    odswiezZdjecie();
 }
-//Zmiany slotu Sliderow
 
 void MainWindow::on_SliderR_sliderReleased()
 {
@@ -351,7 +279,6 @@ void MainWindow::on_CbxKontrast_valueChanged(int arg1)
     ui->SliderKontrast->setValue(arg1);
 }
 
-
 void MainWindow::on_SliderH_sliderReleased()
 {
     int value = ui->SliderH->value();
@@ -359,7 +286,6 @@ void MainWindow::on_SliderH_sliderReleased()
     emit zmianaWartH(value);
     odswiezZdjecie();
 }
-
 
 void MainWindow::on_SliderS_sliderReleased()
 {
@@ -369,7 +295,6 @@ void MainWindow::on_SliderS_sliderReleased()
     odswiezZdjecie();
 }
 
-
 void MainWindow::on_SliderL_sliderReleased()
 {
     int value = ui->SliderL->value();
@@ -377,7 +302,6 @@ void MainWindow::on_SliderL_sliderReleased()
     emit zmianaWartL(value);
     odswiezZdjecie();
 }
-
 
 void MainWindow::on_SliderC_sliderReleased()
 {
@@ -387,7 +311,6 @@ void MainWindow::on_SliderC_sliderReleased()
     odswiezZdjecie();
 }
 
-
 void MainWindow::on_SliderM_sliderReleased()
 {
     int value = ui->SliderM->value();
@@ -395,7 +318,6 @@ void MainWindow::on_SliderM_sliderReleased()
     emit zmianaWartM(value);
     odswiezZdjecie();
 }
-
 
 void MainWindow::on_SliderY_sliderReleased()
 {
@@ -413,4 +335,11 @@ void MainWindow::on_SliderK_sliderReleased()
     odswiezZdjecie();
 }
 
-
+void MainWindow::on_SliderMoc_sliderReleased()
+{
+    int value = ui->SliderMoc->value();
+    ui->CbxMoc->setValue(value);
+    emit zmianaProguKluczowania(value);
+    emit zastosujKluczowanie();
+    odswiezZdjecie();
+}
