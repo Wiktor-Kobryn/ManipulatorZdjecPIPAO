@@ -4,6 +4,7 @@
 Program::Program(QObject *parent)
     :QObject (parent)
 {}
+Program* Program::object = nullptr;
 
 void Program::on_wybierzZdjecie()
 {

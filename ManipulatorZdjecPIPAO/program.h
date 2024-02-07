@@ -16,9 +16,17 @@ class Program : public QObject
     Q_OBJECT
 public:
     ObrazRGB* zdjecieObecne = nullptr;
-    explicit Program(QObject *parent = nullptr);
     void setGUI(MainWindow *ui = nullptr) {GUI = ui;}
-
+    static Program*  getInstance(){
+        if(object==nullptr) {
+            Program* a = new Program();
+            object = a;
+            return object;
+        }else return object;
+    }
+    ~Program(){
+        if(object!=nullptr) delete object;
+    }
 private:
     MainWindow *GUI = nullptr;
     TransfPixRGB tRGB, tRGBmemory;
@@ -29,6 +37,9 @@ private:
     QVector<ObrazRGB*> historiaOperacji;
     int historiaIndex = 0;
     int historiaIndex_Max = 0;
+    static Program* object;
+    explicit Program(QObject *parent = nullptr);
+
 
 signals:
 
