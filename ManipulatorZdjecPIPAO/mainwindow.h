@@ -56,7 +56,7 @@ private slots:
     void on_BtnWybierzZdjecie_clicked();
     void on_BtnOdbicieOsiX_clicked();
     void on_BtnOdbicieOsiY_clicked();
-    void on_BtnTest_clicked();   
+    void on_BtnTest_clicked();
     void on_SliderR_valueChanged(int value);
     void on_CbxR_valueChanged(int arg1);
     void on_SliderG_valueChanged(int value);
@@ -88,7 +88,7 @@ private slots:
     void on_BtnCofnijWszystkie_clicked();
     void on_SliderR_sliderReleased();
     void on_SliderG_sliderReleased();
-    void on_SliderB_sliderReleased(); 
+    void on_SliderB_sliderReleased();
     void on_SliderKontrast_sliderReleased();
     void on_CbxKontrast_valueChanged(int arg1);
 
@@ -97,22 +97,6 @@ private slots:
     void on_SliderS_sliderReleased();
 
     void on_SliderL_sliderReleased();
-
-    void on_SliderC_sliderReleased();
-
-    void on_SliderM_sliderReleased();
-
-    void on_SliderY_sliderReleased();
-
-    void on_SliderK_sliderReleased();
-
-    void on_SliderH_sliderReleased();
-
-    void on_SliderS_sliderReleased();
-
-    void on_SliderL_sliderReleased();
-
-    void on_SliderKontrast_sliderReleased();
 
     void on_SliderC_sliderReleased();
 
