@@ -70,7 +70,7 @@ void MainWindow::on_BtnWybierzZdjecie_clicked()
 
         ui->LblRozmiarWe->setText("rozmiar:" + QString::number(mainApp->zdjecieObecne->getSzerokosc()) + "x" +QString::number(mainApp->zdjecieObecne->getWysokosc()));
         //Ustawienie podgladu
-        ui->LblObrazWe->setPixmap(mainApp->zdjecieObecne->toPixmap());
+        ui->LblObrazWe->setPixmap(mainApp->zdjecieObecne->toPixmap().scaled(ui->LblObrazWe->width(),ui->LblObrazWe->height(), Qt::KeepAspectRatio));
         odswiezZdjecie();
     }
 }
