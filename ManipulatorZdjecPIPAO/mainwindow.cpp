@@ -49,7 +49,9 @@ MainWindow::MainWindow(QWidget *parent, Program *app)
 
 MainWindow::~MainWindow()
 {
+    delete this->mainApp;
     delete ui;
+
 }
 
 void MainWindow::on_BtnWybierzZdjecie_clicked()
