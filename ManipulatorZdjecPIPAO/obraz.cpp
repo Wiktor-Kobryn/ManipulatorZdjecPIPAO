@@ -6,21 +6,10 @@
 
 //K: W sumie to mogliśmy zrobić to Pure Virtual =0;
 
-QPixmap Obraz::toPixmap() {
-    // implementacja funkcji
-    return QPixmap();
-}
 
-void Obraz::odbijWzglOsiX() {
-    // implementacja funkcji
-    //return this;
-}
 
-void Obraz::odbijWzglOsiY() {
-    // implementacja funkcji
-    std::cerr<<"jestem zdjecie_wert";
-    //return this;
-}
+
+
 
 
 ////////////////////////////////////////////////////////////////////
