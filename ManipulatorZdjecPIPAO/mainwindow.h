@@ -98,8 +98,6 @@ private slots:
 
     void on_SliderL_sliderReleased();
 
-    void on_SliderKontrast_sliderReleased();
-
     void on_SliderC_sliderReleased();
 
     void on_SliderM_sliderReleased();

@@ -357,3 +357,45 @@ void MainWindow::on_CbxKontrast_valueChanged(int arg1)
     ui->SliderKontrast->setValue(arg1);
 }
 
+
+void MainWindow::on_SliderH_sliderReleased()
+{
+
+}
+
+
+void MainWindow::on_SliderS_sliderReleased()
+{
+
+}
+
+
+void MainWindow::on_SliderL_sliderReleased()
+{
+
+}
+
+
+void MainWindow::on_SliderC_sliderReleased()
+{
+
+}
+
+
+void MainWindow::on_SliderM_sliderReleased()
+{
+
+}
+
+
+void MainWindow::on_SliderY_sliderReleased()
+{
+
+}
+
+
+void MainWindow::on_SliderK_sliderReleased()
+{
+
+}
+
