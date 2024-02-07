@@ -95,6 +95,22 @@ private slots:
 
     void on_SliderB_sliderReleased();
 
+    void on_SliderH_sliderReleased();
+
+    void on_SliderS_sliderReleased();
+
+    void on_SliderL_sliderReleased();
+
+    void on_SliderKontrast_sliderReleased();
+
+    void on_SliderC_sliderReleased();
+
+    void on_SliderM_sliderReleased();
+
+    void on_SliderY_sliderReleased();
+
+    void on_SliderK_sliderReleased();
+
 private:
     Ui::MainWindow *ui = nullptr;
     Program *mainApp = nullptr;

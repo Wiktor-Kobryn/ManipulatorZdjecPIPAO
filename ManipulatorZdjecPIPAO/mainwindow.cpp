@@ -139,21 +139,17 @@ void MainWindow::on_CbxH_valueChanged(int arg1)
 void MainWindow::on_SliderH_valueChanged(int value)
 {
     ui->CbxH->setValue(value);
-    emit zmianaWartH(value);
-    odswiezZdjecie();
+
 }
 void MainWindow::on_SliderS_valueChanged(int value)
 {
     ui->CbxS->setValue(value);
-    emit zmianaWartS(value);
-    odswiezZdjecie();
+
 }
 
 void MainWindow::on_SliderL_valueChanged(int value)
 {
     ui->CbxL->setValue(value);
-    emit zmianaWartL(value);
-    odswiezZdjecie();
 }
 
 void MainWindow::on_CbxS_valueChanged(int arg1)
@@ -203,29 +199,25 @@ void MainWindow::on_BtnPonow_clicked()
 void MainWindow::on_SliderC_valueChanged(int value)
 {
     ui->CbxC->setValue(value);
-    emit zmianaWartC(value);
-    odswiezZdjecie();
+
 }
 
 void MainWindow::on_SliderM_valueChanged(int value)
 {
     ui->CbxM->setValue(value);
-    emit zmianaWartM(value);
-    odswiezZdjecie();
+
 }
 
 void MainWindow::on_SliderY_valueChanged(int value)
 {
     ui->CbxY->setValue(value);
-    emit zmianaWartY(value);
-    odswiezZdjecie();
+
 }
 
 void MainWindow::on_SliderK_valueChanged(int value)
 {
     ui->CbxK->setValue(value);
-    emit zmianaWartK(value);
-    odswiezZdjecie();
+
 }
 
 void MainWindow::on_CbxC_valueChanged(int arg1)
@@ -340,6 +332,75 @@ void MainWindow::on_SliderB_sliderReleased()
     int value = ui->SliderB->value();
     ui->CbxB->setValue(value);
     emit zmianaWartB(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderH_sliderReleased()
+{
+    int value = ui->SliderH->value();
+    ui->CbxH->setValue(value);
+    emit zmianaWartH(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderS_sliderReleased()
+{
+    int value = ui->SliderS->value();
+    ui->CbxS->setValue(value);
+    emit zmianaWartS(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderL_sliderReleased()
+{
+    int value = ui->SliderL->value();
+    ui->CbxL->setValue(value);
+    emit zmianaWartL(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderKontrast_sliderReleased()
+{
+
+}
+
+
+void MainWindow::on_SliderC_sliderReleased()
+{
+    int value = ui->SliderC->value();
+    ui->CbxC->setValue(value);
+    emit zmianaWartC(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderM_sliderReleased()
+{
+    int value = ui->SliderM->value();
+    ui->CbxM->setValue(value);
+    emit zmianaWartM(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderY_sliderReleased()
+{
+    int value = ui->SliderY->value();
+    ui->CbxY->setValue(value);
+    emit zmianaWartY(value);
+    odswiezZdjecie();
+}
+
+
+void MainWindow::on_SliderK_sliderReleased()
+{
+    int value = ui->SliderK->value();
+    ui->CbxK->setValue(value);
+    emit zmianaWartK(value);
     odswiezZdjecie();
 }
 
