@@ -20,9 +20,9 @@ protected:
     int m_wysokosc;
 
 public:
-    virtual QPixmap toPixmap();
-    virtual void odbijWzglOsiX();
-    virtual void odbijWzglOsiY();
+    virtual QPixmap toPixmap() = 0;
+    virtual void odbijWzglOsiX() = 0;
+    virtual void odbijWzglOsiY() = 0;
     virtual void negatywowanie() = 0;
 
     int getSzerokosc() {return m_szerokosc;}
