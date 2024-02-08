@@ -55,7 +55,7 @@ border-color: rgb(248, 254, 255);
 gridline-color: rgb(34, 32, 115);</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="TabZdjecie">
      <attribute name="title">
@@ -225,7 +225,7 @@ font: 700 14pt &quot;Source Code Pro&quot;;</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgba(0, 0, 0, 0);
 color: rgb(248, 254, 255);
-font: 700 14pt &quot;Source Code Pro&quot;;</string>
+font: 700 13pt &quot;Source Code Pro&quot;;</string>
       </property>
       <property name="text">
        <string>PODSTAWOWE TRANSFORMACJE</string>
